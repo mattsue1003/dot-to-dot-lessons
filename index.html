@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
 <style>
-/* Layout: 頂端彩旗＋彩色標題；左邊桌墊舞台（學習單）、右邊步驟卡；下方是 12 課教案牆 */
+/* Layout: 頂端彩旗＋彩色標題；左邊桌墊舞台（學習單）、右邊步驟卡；下方是 24 課教案牆 */
 :root{
   --bg:#eef6ff;
   --dot:#d3e5fb;
@@ -187,10 +187,10 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
     <div class="seal" aria-hidden="true">點</div>
     <div class="brand">
       <h1 aria-label="連點成畫"><span>連</span><span>點</span><span>成</span><span>畫</span></h1>
-      <p>12 個數字連連看教案：從起點 1 開始一點一點連起來，猜猜看是什麼，再塗上顏色。可以換成 ABC、注音、跳數、倒數或算式，附 A4 學習單。</p>
+      <p>24 個數字連連看教案：從起點 1 開始一點一點連起來，猜猜看是什麼，再塗上顏色。可以換成 ABC、注音、跳數、倒數或算式，附 A4 學習單。</p>
     </div>
     <div class="modes" role="tablist" aria-label="模式">
-      <button role="tab" data-view="lesson" aria-selected="true">12 個教案</button>
+      <button role="tab" data-view="lesson" aria-selected="true">24 個教案</button>
       <button role="tab" data-view="design" aria-selected="false">自己設計</button>
     </div>
   </header>
@@ -264,7 +264,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
           <div class="seg" data-key="pdfv">
             <button data-v="cur">照上面的設定</button><button data-v="easy">大字簡易版</button><button data-v="hard">挑戰版</button>
           </div>
-          <div class="row"><button id="a4One">下載這課 A4（PDF）</button><button id="a4All">全部 12 課（PDF）</button></div>
+          <div class="row"><button id="a4One">下載這課 A4（PDF）</button><button id="a4All">全部 24 課（PDF）</button></div>
           <p class="note">列印時選「實際大小 100%」，點和字才會是設定的大小。大字簡易版＝點少＋特大字；挑戰版＝點多＋標準字。</p>
         </div>
         <button class="ghost" id="lRecord">錄下整課過程（影片，含字幕）</button>
@@ -307,7 +307,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
           <span class="label">我的 A4 學習單</span>
           <img id="dA4img" alt="我的設計 A4 學習單預覽">
           <button class="ghost" id="dA4">下載我的 A4 學習單（PDF）</button>
-          <p class="note">玩法和字級會照「12 個教案」那邊的設定。列印時選「實際大小 100%」。</p>
+          <p class="note">玩法和字級會照「24 個教案」那邊的設定。列印時選「實際大小 100%」。</p>
         </div>
         <button class="ghost" id="dRecord">把我的動畫錄成影片</button>
       </section>
@@ -315,7 +315,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
   </main>
 
   <section class="library" id="library">
-    <div class="libhead"><h2>12 個教案</h2><button class="cta" id="a4All2">下載 12 課 A4 學習單（PDF）</button></div>
+    <div class="libhead"><h2>24 個教案</h2><button class="cta" id="a4All2">下載 24 課 A4 學習單（PDF）</button></div>
   </section>
 
   <details class="notes">
@@ -333,9 +333,9 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
       <div>
         <h3>由簡到難</h3>
         <ul>
-          <li>★ 第 1–4 課：10–20 點，形狀簡單，先熟悉「找點、連線」。</li>
-          <li>★★ 第 5–8 課：20–40 點，有兩筆畫，要學會看 ★ 把筆拿起來。</li>
-          <li>★★★ 第 9–12 課：40–80 點，點比較密，需要耐心，可以分兩次完成。</li>
+          <li>★ 第 1–8 課：10–20 點，形狀簡單，先熟悉「找點、連線」。</li>
+          <li>★★ 第 9–16 課：20–40 點，有兩筆畫，要學會看 ★ 把筆拿起來。</li>
+          <li>★★★ 第 17–24 課：40–80 點，點比較密，需要耐心，可以分兩次完成。</li>
         </ul>
       </div>
       <div>
@@ -411,7 +411,7 @@ function inPoly(x, y, p){ let ins = false; for (let i=0, j=p.length-1; i<p.lengt
   if ((yi>y) !== (yj>y) && x < (xj-xi)*(y-yi)/(yj-yi)+xi) ins = !ins; } return ins; }
 const starPts = (cx,cy,R,r,n=5,rot=-90) => { const o=[]; for (let i=0;i<2*n;i++){ const a=(rot+i*180/n)*D2R, rr=i%2?r:R; o.push([cx+Math.cos(a)*rr, cy+Math.sin(a)*rr]); } return o; };
 
-/* ---------- 12 個圖形 ---------- */
+/* ---------- 24 個圖形 ---------- */
 const HEART = 'M0 -190 C10 -215,30 -245,60 -270 C170 -360,350 -300,370 -140 C390 40,240 200,0 360 C-240 200,-390 40,-370 -140 C-350 -300,-170 -360,-60 -270 C-30 -245,-10 -215,0 -190Z';
 const FLOWER = (() => { const o = []; for (let k=0;k<120;k++){ const ph = (-90+k*3)*D2R; let best = 0;
   for (let j=0;j<5;j++){ const th = (-90+j*72)*D2R, D = 150, R = 112, s = Math.sin(ph-th), q = R*R - D*D*s*s; if (q < 0) continue; best = Math.max(best, D*Math.cos(ph-th) + Math.sqrt(q)); }
@@ -432,6 +432,20 @@ const LESSONS = [
    paths:[{d:HEART, t:[500,530,.95], fill:'#f0607a'}], paint:[['#ff9fb2','M330 330 C300 380,300 430,330 470 C350 430,370 380,330 330Z']]},
   {name:'星星', level:1, n:[10,10,20], theme:'入門・夜空', hint:'晚上抬頭，在天空閃閃發亮', choices:['星星','雪花','花'], talk:'聊一聊：小時候在哪裡看過滿天的星星？',
    paths:[{pts:starPts(500,540,410,170), fill:'#f6c636'}]},
+  {name:'蘋果', level:1, n:[10,14,20], theme:'水果・秋天', hint:'紅紅圓圓的水果，咬起來脆脆的', choices:['蘋果','番茄','柿子'], talk:'聊一聊：最喜歡吃什麼水果？',
+   paths:[{d:'M500 300 C430 240,250 240,210 400 C170 580,290 850,420 850 C460 850,475 830,500 830 C525 830,540 850,580 850 C710 850,830 580,790 400 C750 240,570 240,500 300Z', fill:'#e2493f'}],
+   inner:'M500 300 C495 240,510 190,540 150', paint:[['#7cc35a','M540 225 C600 150,700 145,760 170 C710 245,610 265,540 225Z'],['#f47a6e','M320 380 C280 430,270 500,290 560 C320 500,340 440,320 380Z']]},
+  {name:'彎月', level:1, n:[10,12,18], theme:'夜空・中秋', hint:'晚上在天空，有時候圓、有時候彎彎的', choices:['月亮','香蕉','小船'], talk:'聊一聊：中秋節都怎麼過？會烤肉、吃月餅嗎？',
+   paths:[{d:'M560 140 C320 170,180 360,190 540 C200 760,400 900,620 870 C730 855,820 790,860 720 C760 760,620 760,520 680 C400 580,380 380,450 270 C480 220,520 170,560 140Z', fill:'#f6c636'}],
+   inner:'M310 520 C330 548,365 548,385 520 M380 650 C410 680,450 680,480 660', paint:[['#ffe08a','M300 360 C260 420,250 500,270 560 C300 480,320 420,300 360Z'],['#f6a6a6','O330 600 22']]},
+  {name:'雨傘', level:1, n:[14,18,26], theme:'生活・下雨天', hint:'下雨天出門要帶它', choices:['雨傘','香菇','帽子'], talk:'聊一聊：下雨天最喜歡做什麼？',
+   paths:[{d:'M140 480 C160 260,330 150,500 150 C670 150,840 260,860 480 C820 440,760 440,720 480 C680 440,610 440,570 480 C540 450,460 450,430 480 C390 440,320 440,280 480 C240 440,180 440,140 480Z', fill:'#ef5a6f'}],
+   inner:'M500 150 L500 110 M500 470 L500 790 C500 870,400 870,395 800',
+   paint:[['#f6c636','M500 150 C430 200,400 330,430 480 L570 480 C600 330,570 200,500 150Z'],['#58a8f0','M500 150 C330 150,230 300,280 480 L140 480 C160 260,330 150,500 150Z M500 150 C670 150,770 300,720 480 L860 480 C840 260,670 150,500 150Z']]},
+  {name:'葉子', level:1, n:[12,16,22], theme:'大自然・秋天', hint:'長在樹上，秋天會變黃掉下來', choices:['葉子','羽毛','魚'], talk:'聊一聊：秋天喜歡去哪裡走走？',
+   paths:[{d:'M200 810 C210 500,420 220,820 170 C800 560,560 800,200 810Z', fill:'#7cc35a'}],
+   inner:'M200 810 C400 600,600 400,820 170 M200 810 L130 880 M380 630 L340 470 M480 530 L450 360 M590 420 L570 290 M380 630 L540 660 M480 530 L640 560 M590 420 L720 440',
+   paint:[['#a8d982','M260 700 C300 520,440 330,640 260 C480 380,360 540,260 700Z']]},
   {name:'房子', level:1, n:[15,16,24], theme:'我的家', hint:'有屋頂、有門，是我們住的地方', choices:['房子','帳篷','火車'], talk:'聊一聊：小時候住的房子長什麼樣子？',
    paths:[{pts:[[500,150],[650,275],[650,175],[730,175],[730,342],[860,450],[780,450],[780,880],[580,880],[580,700],[420,700],[420,880],[220,880],[220,450],[140,450]], fill:'#f6c636'}],
    inner:'M270 520 L370 520 L370 620 L270 620Z M630 520 L730 520 L730 620 L630 620Z M320 520 L320 620 M680 520 L680 620',
@@ -440,6 +454,14 @@ const LESSONS = [
    paths:[{d:'M150 500 C250 300,550 280,700 450 L860 300 L820 500 L860 700 L700 550 C550 720,250 700,150 500Z', fill:'#f28a2e'}],
    inner:'O270 470 20 M370 400 C410 460,410 540,370 600',
    paint:[['#f6c636','M700 450 L860 300 L820 500 L860 700 L700 550Z'],['#ffb36b','M430 420 C470 450,470 480,430 510 C390 480,390 450,430 420Z M540 450 C580 480,580 510,540 540 C500 510,500 480,540 450Z']]},
+  {name:'小鳥', level:2, n:[20,28,38], theme:'動物・鳥', hint:'會在樹上唱歌、會飛', choices:['小鳥','小雞','魚'], talk:'聊一聊：早上會聽到鳥叫聲嗎？',
+   paths:[{d:'M130 470 L240 430 C250 300,400 260,470 340 C520 390,580 420,660 420 L900 320 L830 480 C810 650,650 770,470 770 C320 770,240 660,250 530Z', fill:'#58a8f0'}],
+   inner:'O305 410 16 M440 790 L420 880 M530 790 L530 880 M380 880 L460 880 M490 880 L570 880',
+   paint:[['#f6c636','M300 560 C380 700,560 740,700 640 C620 720,460 760,350 690 C300 650,290 600,300 560Z'],['#2f6fc4','M430 500 C520 450,660 460,740 540 C660 640,520 640,430 500Z'],['#f28a2e','M130 470 L240 430 L250 530Z']]},
+  {name:'帆船', level:2, n:[18,26,36], theme:'海洋・旅行', hint:'靠風吹著在海上走', choices:['帆船','飛機','風箏'], talk:'聊一聊：有沒有坐過船？去過哪個離島？',
+   paths:[{d:'M530 120 L800 580 L530 580Z', fill:'#fff1c1'}, {d:'M470 200 L470 580 L230 580Z', fill:'#ffd6d6'}, {d:'M170 640 L830 640 L730 800 L270 800Z', fill:'#8d5b3b'}],
+   inner:'M500 90 L500 640 M80 860 C130 830,180 890,230 860 C280 830,330 890,380 860 M600 870 C650 840,700 900,750 870 C800 840,850 900,900 870',
+   paint:[['#e2493f','M500 90 L590 115 L500 140Z'],['#c98a55','M210 690 L790 690 L770 720 L230 720Z']]},
   {name:'茶壺', level:2, n:[24,32,44], theme:'生活・泡茶', hint:'泡茶的時候用得到', choices:['茶壺','花瓶','水桶'], talk:'聊一聊：平常喜歡喝什麼茶？跟誰一起喝？',
    paths:[{d:'M330 820 C170 760,180 520,350 470 L385 440 C395 400,440 382,478 378 C440 345,455 300,500 300 C545 300,560 345,522 378 C560 382,605 400,615 440 L650 470 C700 490,720 520,730 560 L860 420 L885 440 L770 650 C740 760,700 800,670 820Z', fill:'#38c1a0'},
           {d:'M252 545 C110 500,80 790,262 750', stroke:'#8d5b3b', w:22}],
@@ -456,11 +478,35 @@ const LESSONS = [
    paths:[{d:'M330 140 L400 270 C460 255,540 255,600 270 L670 140 L700 300 C750 380,720 460,640 490 C740 540,790 700,770 880 L840 880 C900 880,930 820,910 760 C900 720,930 690,950 720 C975 790,935 930,840 930 L260 930 C200 860,210 640,360 490 C280 460,250 380,300 300Z', fill:'#f28a2e'}],
    inner:'O430 370 18 O570 370 18 M485 420 L515 420 L500 438Z M420 432 L330 415 M420 447 L330 457 M580 432 L670 415 M580 447 L670 457 M460 770 L460 925 M540 770 L540 925',
    paint:[['#ffd2a6','M500 520 C580 560,600 760,560 925 L440 925 C400 760,420 560,500 520Z'],['#f390b5','M345 185 L385 262 L318 290Z M655 185 L615 262 L682 290Z']]},
+  {name:'烏龜', level:2, n:[24,34,46], theme:'動物・長壽', hint:'背著硬硬的殼，走路慢慢的', choices:['烏龜','螃蟹','刺蝟'], talk:'聊一聊：「龜兔賽跑」的故事還記得嗎？',
+   paths:[{d:'M120 560 C110 480,190 450,250 490 L290 520 C320 330,450 260,560 260 C700 260,820 360,840 520 L880 560 L830 600 L790 600 L780 680 L700 680 L690 600 L420 600 L410 680 L330 680 L320 600 L260 600 C210 610,130 620,120 560Z', fill:'#a6d36f'}],
+   inner:'O180 525 12 M300 600 C330 470,420 400,560 400 C700 400,790 470,825 600 M440 400 L470 600 M680 400 L650 600 M560 260 L560 400',
+   paint:[['#3f9a5c','M290 520 C320 330,450 260,560 260 C700 260,820 360,840 520 L830 600 L295 600Z'],['#6cc07c','M440 400 L560 400 L560 270 C500 280,460 320,440 400Z M680 400 L560 400 L560 270 C620 280,660 320,680 400Z']]},
+  {name:'兔子', level:2, n:[26,36,48], theme:'動物・可愛', hint:'耳朵長長的，愛吃紅蘿蔔', choices:['兔子','貓','老鼠'], talk:'聊一聊：月亮上的玉兔故事聽過嗎？',
+   paths:[{d:'M420 400 C360 300,320 160,370 100 C450 70,480 250,470 360 C490 355,510 355,530 360 C520 250,550 70,630 100 C680 160,640 300,580 400 C640 440,650 520,600 560 C700 600,740 720,700 820 L700 900 L300 900 L300 820 C260 720,300 600,400 560 C350 520,360 440,420 400Z', fill:'#e6e1dc'}],
+   inner:'O440 470 14 O560 470 14 M490 505 L510 505 L500 518Z M500 518 L500 530 M415 350 C395 260,385 180,405 140 M585 350 C605 260,615 180,595 140 M300 900 C300 860,380 860,400 900 M600 900 C620 860,700 860,700 900',
+   paint:[['#f6b3c6','M415 350 C395 260,385 180,405 140 C440 190,450 280,445 355Z M585 350 C605 260,615 180,595 140 C560 190,550 280,555 355Z O425 515 18 O575 515 18'],['#fbf8f1','M500 600 C590 630,620 760,590 900 L410 900 C380 760,410 630,500 600Z']]},
   {name:'腳踏車', level:3, n:[36,50,70], theme:'交通・懷舊', hint:'兩個輪子，要用腳踩才會前進', choices:['腳踏車','機車','推車'], talk:'聊一聊：第一次學騎腳踏車是誰教的？',
    paths:[{d:'O225 650 150', stroke:'#3b3b46', w:20}, {d:'O775 650 150', stroke:'#3b3b46', w:20},
           {d:'M225 650 L480 650 L660 420 L395 420Z', stroke:'#e2493f', w:16},
           {d:'M775 650 L660 420 L640 320 L740 300', stroke:'#e2493f', w:16}, {d:'M310 340 L460 330', stroke:'#8d5b3b', w:20}],
    inner:'O225 650 14 O775 650 14 M480 650 L395 420 M395 420 L385 340 O480 650 30 M225 515 L225 785 M90 650 L360 650 M775 515 L775 785 M640 650 L910 650'},
+  {name:'大象', level:3, n:[40,52,70], theme:'動物・動物園', hint:'鼻子長長的，耳朵大大的', choices:['大象','河馬','犀牛'], talk:'聊一聊：有沒有去動物園看過林旺爺爺？',
+   paths:[{d:'M300 330 C360 250,520 240,600 290 C700 250,840 290,870 420 C890 520,880 600,860 640 L860 820 L780 820 L780 690 L640 690 L640 820 L560 820 L560 690 C500 700,440 680,420 660 L420 820 L340 820 L340 640 C300 620,280 580,270 540 C240 600,220 680,200 760 C190 800,140 800,150 760 C170 680,190 560,220 470 C230 410,260 360,300 330Z', fill:'#a9b1bd'}],
+   inner:'M870 470 L920 560 M340 360 C420 330,480 380,470 470 C460 560,380 580,330 540 O300 420 12 M280 540 C300 575,335 580,355 560',
+   paint:[['#c9ced8','M340 360 C420 330,480 380,470 470 C460 560,380 580,330 540 C320 480,320 420,340 360Z'],['#fbf8f1','M280 540 C300 575,335 580,355 560 L345 548 C330 560,305 558,290 535Z']]},
+  {name:'公車', level:3, n:[36,44,60], theme:'交通・出門', hint:'很多人一起坐，到站要按鈴', choices:['公車','火車','卡車'], talk:'聊一聊：以前坐公車要投零錢還是剪票？',
+   paths:[{d:'M120 360 C120 300,160 260,220 260 L820 260 C880 260,900 300,900 360 L900 690 L120 690Z', fill:'#f6c636'}],
+   inner:'M170 320 L300 320 L300 450 L170 450Z M340 320 L470 320 L470 450 L340 450Z M510 320 L640 320 L640 450 L510 450Z M680 320 L850 320 L850 450 L680 450Z M170 480 L250 480 L250 660 L170 660Z O320 710 62 O760 710 62 O320 710 22 O760 710 22',
+   paint:[['#86cdf0','M170 320 L300 320 L300 450 L170 450Z M340 320 L470 320 L470 450 L340 450Z M510 320 L640 320 L640 450 L510 450Z M680 320 L850 320 L850 450 L680 450Z'],['#e2493f','M260 520 L900 520 L900 560 L260 560Z'],['#3b3b46','O320 710 62 O760 710 62'],['#c9ced8','O320 710 22 O760 710 22']]},
+  {name:'燈籠', level:3, n:[36,48,64], theme:'節慶・元宵', hint:'元宵節提著它去逛街', choices:['燈籠','氣球','南瓜'], talk:'聊一聊：小時候元宵節有提燈籠、猜燈謎嗎？',
+   paths:[{d:'M420 180 L580 180 L580 230 C780 260,840 400,840 500 C840 600,780 740,580 770 L580 820 L420 820 L420 770 C220 740,160 600,160 500 C160 400,220 260,420 230Z', fill:'#e2493f'}],
+   inner:'M500 180 L500 90 M500 230 C430 400,430 600,500 770 M500 230 C570 400,570 600,500 770 M420 230 C260 400,260 600,420 770 M580 230 C740 400,740 600,580 770 M500 820 L500 870 M460 870 L540 870 M470 870 L470 960 M500 870 L500 960 M530 870 L530 960',
+   paint:[['#e0a82e','M420 180 L580 180 L580 230 L420 230Z M420 770 L580 770 L580 820 L420 820Z'],['#f47a6e','M500 230 C430 400,430 600,500 770 C570 600,570 400,500 230Z'],['#f6c636','M460 870 L540 870 L540 960 L460 960Z']]},
+  {name:'吉他', level:3, n:[40,52,70], theme:'音樂・唱歌', hint:'彈著它唱歌，有六條弦', choices:['吉他','小提琴','葫蘆'], talk:'聊一聊：最會唱哪一首老歌？',
+   paths:[{d:'M430 80 L570 80 L570 205 L532 220 L532 420 C600 400,680 440,680 520 C680 580,640 610,620 630 C700 660,740 720,740 790 C740 900,620 950,500 950 C380 950,260 900,260 790 C260 720,300 660,380 630 C360 610,320 580,320 520 C320 440,400 400,468 420 L468 220 L430 205Z', fill:'#e0a85e'}],
+   inner:'O500 640 50 M440 820 L560 820 L560 850 L440 850Z M490 200 L490 835 M510 200 L510 835 O405 115 12 O405 165 12 O595 115 12 O595 165 12 M430 115 L405 115 M430 165 L405 165 M570 115 L595 115 M570 165 L595 165',
+   paint:[['#8d5b3b','M430 80 L570 80 L570 205 L430 205Z M468 215 L532 215 L532 430 L468 430Z M440 820 L560 820 L560 850 L440 850Z'],['#3b2b20','O500 640 50']]},
   {name:'台灣', level:3, n:[36,56,78], theme:'家鄉・地理', hint:'我們住的島，形狀像一條番薯', choices:['台灣','番薯','葉子'], talk:'聊一聊：住在台灣的哪裡？最想去哪個縣市玩？',
    paths:[{pts:TAIWAN, fill:'#7cc35a'}], inner:'O512 540 10',
    paint:[['#2f8a55','M520 230 C560 330,580 450,540 560 C520 650,470 740,440 790 C480 680,500 600,500 520 C500 420,500 320,520 230Z']]},
@@ -540,12 +586,12 @@ async function buildLesson(les, o){
   await fontsReady();
   const fsz = FS[o.fs] || FS.big, seed = hash(les.name);
   let paths;
-  if (les.custom) paths = les.paths.map(p => ({dots:p.dots.map(q => [q[0], q[1]]), closed:p.closed, fill:p.fill, stroke:p.stroke, w:p.w}));
+  if (les.custom) paths = les.paths.map(p => ({dots:p.dots.map(q => [q[0], q[1]]), closed:p.closed, fill:p.fill, stroke:p.stroke, w:p.w, shape:polyPath(p.dots, p.closed)}));
   else {
     const raw = les.paths.map(sp => { const g = sp.pts ? {pts:sp.pts.map(p => [p[0], p[1]]), closed:true} : parseD(sp.d, sp.t)[0];
       return {...sp, pts:g.pts, closed:g.closed, cs:corners(g.pts, g.closed)}; });
     const dots = resample(raw, les.n[DENS_I[o.density] ?? 1]);
-    paths = raw.map((p,i) => ({dots:dots[i], closed:p.closed, fill:p.fill, stroke:p.stroke, w:p.w}));
+    paths = raw.map((p,i) => ({dots:dots[i], closed:p.closed, fill:p.fill, stroke:p.stroke, w:p.w, shape:polyPath(p.pts, p.closed)}));
   }
   paths = paths.filter(p => p.dots.length);
   // 順序、線（含把筆拿起來、連回起點）
@@ -569,7 +615,8 @@ async function buildLesson(les, o){
     const ds = seq.filter(d => segFor(d.i) === k);
     segs.push({k, start: es.length ? es[0][1] : 0, end: es.length ? es[es.length-1][1]+1 : 0, from: k === 0 ? 0 : Math.max(0, ds[0].i-1), to: ds.length ? ds[ds.length-1].i : 0}); }
   let cx = 0, cy = 0; seq.forEach(d => { cx += d.x; cy += d.y; }); cx /= n || 1; cy /= n || 1;
-  const ld = {les, o, paths, seq, edges, segs, n, cx, cy, r:fsz.r, f: o.count === 'math' ? fsz.f*.78 : fsz.f,
+  const bb = {x0:1e9, y0:1e9, x1:-1e9, y1:-1e9}; seq.forEach(d => { bb.x0 = Math.min(bb.x0, d.x); bb.y0 = Math.min(bb.y0, d.y); bb.x1 = Math.max(bb.x1, d.x); bb.y1 = Math.max(bb.y1, d.y); });
+  const ld = {les, o, paths, seq, edges, segs, n, cx, cy, bb, r:fsz.r, f: o.count === 'math' ? fsz.f*.78 : fsz.f,
     inner: dPath(les.inner), paints: (les.paint || []).map(([c,d]) => [c, dPath(d)])};
   placeLabels(ld);
   return ld;
@@ -612,11 +659,21 @@ function placeLabels(ld){
 /* ---------- 畫學習單（0–1000 座標） ---------- */
 const PAPER = '#fffdf8', INK = '#2b2b33', START = '#2fae8c', NEWS = '#f08a24', REACH = '#ef4b4b';
 function drawStar5(c, x, y, R){ const p = starPts(x, y, R, R*.45); c.beginPath(); c.moveTo(p[0][0], p[0][1]); for (const q of p.slice(1)) c.lineTo(q[0], q[1]); c.closePath(); }
+// 完成圖：用原本的平滑外形上色，加柔和的亮面、暗面和地上的影子
 function drawColor(c, ld){
+  const {x0, y0, x1, y1} = ld.bb, w = x1-x0, h = y1-y0;
   c.save(); c.lineCap = 'round'; c.lineJoin = 'round';
-  for (const p of ld.paths) if (p.fill && p.closed){ c.fillStyle = p.fill; c.fill(polyPath(p.dots, true)); }
+  c.fillStyle = 'rgba(70,60,50,.10)'; c.beginPath(); c.ellipse((x0+x1)/2, Math.min(985, y1+22), w*.42+20, 20, 0, 0, 7); c.fill();
+  const fills = ld.paths.filter(p => p.fill && p.closed), union = new Path2D();
+  for (const p of fills){ c.fillStyle = p.fill; c.fill(p.shape); union.addPath(p.shape); }
   for (const [col, path] of ld.paints){ c.fillStyle = col; c.fill(path); }
-  for (const p of ld.paths) if (p.stroke){ c.strokeStyle = p.stroke; c.lineWidth = p.w || 14; c.stroke(polyPath(p.dots, p.closed)); }
+  if (fills.length){ c.save(); c.clip(union);
+    const g = c.createRadialGradient(x0+w*.3, y0+h*.22, 0, x0+w*.3, y0+h*.22, Math.max(w,h)*.7);
+    g.addColorStop(0, 'rgba(255,255,255,.38)'); g.addColorStop(.55, 'rgba(255,255,255,.06)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    c.fillStyle = g; c.fillRect(0,0,1000,1000);
+    const g2 = c.createLinearGradient(0, y0+h*.45, 0, y1); g2.addColorStop(0, 'rgba(40,20,30,0)'); g2.addColorStop(1, 'rgba(40,20,30,.16)');
+    c.fillStyle = g2; c.fillRect(0,0,1000,1000); c.restore(); }
+  for (const p of ld.paths) if (p.stroke){ c.strokeStyle = p.stroke; c.lineWidth = p.w || 14; c.stroke(p.shape); }
   c.restore();
 }
 function edgeLine(c, ld, e, t=1){ const a = ld.seq[e.a], b = ld.seq[e.b]; c.moveTo(a.x, a.y); c.lineTo(lerp(a.x, b.x, t), lerp(a.y, b.y, t)); }
@@ -631,12 +688,13 @@ function drawBoard(c, ld, st){
   // 連好的線
   const drawn = st.drawn || 0;
   if (drawn > 0 || st.cur >= 0){
-    c.strokeStyle = rv > 0 ? `rgb(${Math.round(lerp(90,40,rv))},${Math.round(lerp(86,40,rv))},${Math.round(lerp(98,48,rv))})` : '#5a5662';
-    c.lineWidth = 5 + 3*rv; c.beginPath();
+    c.strokeStyle = '#5a5662'; c.lineWidth = 5; c.globalAlpha = 1 - rv; c.beginPath();
     for (let i=0;i<drawn && i<ld.edges.length;i++){ const e = ld.edges[i]; if (!e.lift) edgeLine(c, ld, e); }
     if (st.cur >= 0 && st.cur < ld.edges.length && !ld.edges[st.cur].lift) edgeLine(c, ld, ld.edges[st.cur], st.edgeT || 0);
-    c.stroke();
+    c.stroke(); c.globalAlpha = 1;
   }
+  // 揭曉：直線慢慢變成平滑好看的外形
+  if (rv > 0){ c.globalAlpha = rv; c.strokeStyle = '#2f2a33'; c.lineWidth = 6.5; for (const p of ld.paths) c.stroke(p.shape); c.globalAlpha = 1; }
   c.restore();
   // 點和編號
   const da = (1 - .78*(st.dim || 0)) * (1 - rv);
@@ -1025,22 +1083,22 @@ async function makeCover(o){
   bunting(c, Wd, 10*MM);
   c.font = `${16*MM}px ${DISPLAY}`; c.textBaseline='alphabetic';
   let x = 18*MM; [...'連點成畫'].forEach((ch,i)=>{ c.save(); c.translate(x, 40*MM); c.rotate([-.06,.04,-.03,.05][i]); c.fillStyle = CUTE[i]; c.fillText(ch,0,0); c.restore(); x += c.measureText(ch).width + 1*MM; });
-  c.fillStyle='#2c2f3b'; c.font = `${8*MM}px ${DISPLAY}`; c.fillText('12 課 A4 學習單', 18*MM, 54*MM);
+  c.fillStyle='#2c2f3b'; c.font = `${8*MM}px ${DISPLAY}`; c.fillText('24 課 A4 學習單', 18*MM, 54*MM);
   c.font = `500 ${4*MM}px ${FONT}`; c.fillStyle='#5f6680';
   [`玩法：${COUNT[o.count].name}・點數 ${DENS_N[o.density]}・${FS[o.fs].n}字。從綠色起點開始，照順序一點一點連起來。`,'列印時選「實際大小 100%」；準備鉛筆或粗彩色筆、蠟筆。這一頁是給帶領者的目錄（有答案）。'].forEach((t,i)=>c.fillText(t, 18*MM, 64*MM+i*6*MM));
-  const imgs = $$('.card img'), cw = 41*MM, ch = 51*MM, gx = 18*MM, gy = 77*MM, gap = 2.5*MM;
+  const imgs = $$('.card img'), gap = 2.4*MM, cw = (174*MM - 5*gap)/6, ch = cw + 10*MM, gx = 18*MM, gy = 74*MM;
   LESSONS.forEach((les, i) => {
-    const col = i%4, row = Math.floor(i/4), X = gx+col*(cw+gap), Y = gy+row*(ch+gap);
-    roundRect(c, X, Y, cw, ch, 4*MM, '#fff', '#d4e0f0');
-    roundRect(c, X+2*MM, Y+2*MM, cw-4*MM, cw-6*MM, 3*MM, '#3f7fc4');
-    const im = (cw-12*MM); if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) c.drawImage(imgs[i], X+6*MM, Y+4*MM, im, im);
-    c.fillStyle='#2c2f3b'; c.font = `${4.6*MM}px ${DISPLAY}`; c.fillText(`${i+1}. ${les.name}`, X+3*MM, Y+cw+2.5*MM);
-    c.fillStyle='#f2a900'; c.font = `${3.4*MM}px ${DISPLAY}`; c.fillText(stars(les.level), X+3*MM, Y+cw+8*MM);
-    c.fillStyle='#5f6680'; c.font = `500 ${3.2*MM}px ${FONT}`; c.textAlign='right'; c.fillText(`${les.n[DENS_I[o.density]]} 點`, X+cw-3*MM, Y+cw+8*MM); c.textAlign='left';
+    const col = i%6, row = Math.floor(i/6), X = gx+col*(cw+gap), Y = gy+row*(ch+gap);
+    roundRect(c, X, Y, cw, ch, 3*MM, '#fff', '#d4e0f0');
+    roundRect(c, X+1.5*MM, Y+1.5*MM, cw-3*MM, cw-3*MM, 2.5*MM, '#3f7fc4');
+    const im = cw-7*MM; if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) c.drawImage(imgs[i], X+3.5*MM, Y+3.5*MM, im, im);
+    c.fillStyle='#2c2f3b'; c.font = `${3.6*MM}px ${DISPLAY}`; c.fillText(`${i+1}. ${les.name}`, X+2*MM, Y+cw+3.6*MM);
+    c.fillStyle='#f2a900'; c.font = `${2.8*MM}px ${DISPLAY}`; c.fillText(stars(les.level), X+2*MM, Y+cw+8*MM);
+    c.fillStyle='#5f6680'; c.font = `500 ${2.7*MM}px ${FONT}`; c.textAlign='right'; c.fillText(`${les.n[DENS_I[o.density]]} 點`, X+cw-2*MM, Y+cw+8*MM); c.textAlign='left';
   });
   c.fillStyle='#2c2f3b'; c.font = `${4.6*MM}px ${DISPLAY}`; c.fillText('給帶領者', 18*MM, 248*MM);
   c.font = `500 ${3.7*MM}px ${FONT}`; c.fillStyle='#4a5068';
-  ['練注意力、數序、視覺搜尋和手眼協調。一段一段來：每連 10 點停一下，等大家跟上再繼續。','卡住時給線索不給答案：「下一個是 7，在 6 的附近找找看。」連完先猜再揭曉，聊聊相關的回憶。','★ 1–4 課 10–20 點；★★ 5–8 課 20–40 點、有兩筆畫；★★★ 9–12 課 40–80 點，可分兩次完成。'].forEach((t,i) =>
+  ['練注意力、數序、視覺搜尋和手眼協調。一段一段來：每連 10 點停一下，等大家跟上再繼續。','卡住時給線索不給答案：「下一個是 7，在 6 的附近找找看。」連完先猜再揭曉，聊聊相關的回憶。','★ 1–8 課 10–20 點；★★ 9–16 課 20–40 點、有的有兩筆畫；★★★ 17–24 課 40–80 點，可分兩次完成。'].forEach((t,i) =>
     wrapText(c, t, 174*MM).forEach((l,j) => c.fillText(l, 18*MM, 256*MM + i*9*MM + j*4.8*MM)));
   c.fillStyle='#a3abbd'; c.font = `500 ${3.5*MM}px ${FONT}`; c.textAlign='right'; c.fillText('連點成畫', 192*MM, 292*MM);
   return cv;
@@ -1107,7 +1165,7 @@ for (const el of $$('.seg[data-key]')){
 
 /* 教案目錄 */
 let thumbsReady;
-{ const lib = $('#library'), groups = [[1,'★ 入門・10–20 點',1,4],[2,'★★ 進階・20–40 點',5,8],[3,'★★★ 挑戰・40–80 點',9,12]];
+{ const lib = $('#library'), groups = [[1,'★ 入門・10–20 點',1,8],[2,'★★ 進階・20–40 點',9,16],[3,'★★★ 挑戰・40–80 點',17,24]];
   for (const [lv,label,from,to] of groups){
     const g = document.createElement('div'); g.className='lib-group';
     g.innerHTML = `<h3>${label}・第 ${from}–${to} 課</h3><div class="cards"></div>`;
@@ -1137,7 +1195,7 @@ $('#speakBtn').onclick = () => { S.speak = !S.speak; savePrefs(); updateUI(); if
 const fileBase = () => S.lesson < 0 ? curLes().name : `第${S.lesson+1}課_${curLes().name}`;
 const pdfTag = () => ({cur:'', easy:'_大字簡易版', hard:'_挑戰版'})[S.pdfv];
 $('#a4One').onclick = () => buildPdf([{les:curLes(), no:S.lesson < 0 ? 0 : S.lesson+1}], false, `連點成畫學習單_${fileBase()}${pdfTag()}.pdf`);
-$('#a4All').onclick = $('#a4All2').onclick = () => buildPdf(LESSONS.map((les,i)=>({les, no:i+1})), true, `連點成畫_12課A4學習單${pdfTag()}.pdf`);
+$('#a4All').onclick = $('#a4All2').onclick = () => buildPdf(LESSONS.map((les,i)=>({les, no:i+1})), true, `連點成畫_${LESSONS.length}課A4學習單${pdfTag()}.pdf`);
 $('#lRecord').onclick = () => { if (LD) recordWith(tok => playAll(tok, true), `連點成畫教學_${fileBase()}`); };
 $('#backDesign').onclick = () => setView('design');
 const playCustom = () => { const les = customLesson(); if (les.paths.reduce((s,p) => s + p.dots.length, 0) < 3){ toast('至少要放 3 個點，才能連成一個圖案'); return false; }
@@ -1259,7 +1317,7 @@ function updateUI(){
   $('#speakBtn').setAttribute('aria-pressed', String(S.speak)); $('#speakBtn').textContent = S.speak ? '🔊 連到每一點時唸出來（開）' : '🔈 連到每一點時唸出來（關）';
   if (lesson){
     const s = lessonSteps[S.lstep], revealAt = lessonSteps.findIndex(x => x.type === 'reveal'), shown = revealAt >= 0 && S.lstep >= revealAt;
-    $('#lNum').textContent = custom ? '自己設計' : `第 ${S.lesson+1} 課・共 12 課`;
+    $('#lNum').textContent = custom ? '自己設計' : `第 ${S.lesson+1} 課・共 ${LESSONS.length} 課`;
     $('#lName').textContent = shown ? les.name : '猜猜我是誰？';
     $('#lMeta').innerHTML = (les.level ? `<span class="chip"><span class="stars">${stars(les.level)}</span></span>` : '') + (LD ? `<span class="chip">${LD.n} 個點</span><span class="chip">${LD.paths.length} 筆</span>` : '') + `<span class="chip">${COUNT[S.count].name}</span>` + (shown ? `<span class="chip">${les.theme}</span>` : '');
     $('#densNote').textContent = custom ? '（自己設計的點數不會變）' : `（疏 ${les.n[0]}・標準 ${les.n[1]}・密 ${les.n[2]} 點）`;
