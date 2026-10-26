@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="12 個連點成畫（數字連連看）教案：一步一步連線動畫、猜猜看、著色，可換 ABC、注音、跳數、倒數、算式玩法，附 A4 學習單 PDF 與自己設計模式。">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<title>連點成畫</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 頂端彩旗＋彩色標題；左邊桌墊舞台（學習單）、右邊步驟卡；下方是 12 課教案牆 */
+:root{
+  --bg:#eef6ff;
+  --dot:#d3e5fb;
+  --surface:#ffffff;
+  --ink:#2c2f3b;
+  --muted:#5f6680;
+  --line:#d4e0f0;
+  --accent:#ef4b4b;
+  --accent-deep:#c43333;
+  --accent-ink:#ffffff;
+  --accent-soft:#ffe8e4;
+  --sun:#ffc83d;
+  --mint:#38c1a0;
+  --sky:#58a8f0;
+  --grape:#9b6cf0;
+  --mat:#3f7fc4;
+  --mat-line:rgba(255,255,255,.12);
+  --mat-line-strong:rgba(255,255,255,.26);
+  --focus:#1f6feb;
+  --font-display:"Huninn","jf-openhuninn","Arial Rounded MT Bold","PingFang TC",sans-serif;
+  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#181d29; --dot:#222a3a; --surface:#232b3b; --ink:#eef2fa; --muted:#aab4ca; --line:#38445a;
+    --accent:#ff6464; --accent-deep:#c94444; --accent-ink:#ffffff; --accent-soft:#4a2a30;
+    --mat:#2a5a8f; --mat-line:rgba(255,255,255,.09); --mat-line-strong:rgba(255,255,255,.2);
+    --focus:#6aa5ff; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#181d29; --dot:#222a3a; --surface:#232b3b; --ink:#eef2fa; --muted:#aab4ca; --line:#38445a;
+  --accent:#ff6464; --accent-deep:#c94444; --accent-ink:#ffffff; --accent-soft:#4a2a30;
+  --mat:#2a5a8f; --mat-line:rgba(255,255,255,.09); --mat-line-strong:rgba(255,255,255,.2);
+  --focus:#6aa5ff; color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background-color:var(--bg);background-image:radial-gradient(var(--dot) 2.2px,transparent 2.8px);background-size:28px 28px;color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6}
+.bunting{display:flex;height:30px;overflow:hidden;position:relative;padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px))}
+.bunting::before{content:"";position:absolute;left:0;right:0;top:3px;height:2px;background:var(--line)}
+.bunting span{flex:none;width:0;height:0;margin-right:6px;border-left:15px solid transparent;border-right:15px solid transparent;border-top:24px solid var(--c);position:relative;top:4px}
+.app{max-width:1240px;margin:0 auto;padding-block:10px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+header.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.seal{flex:none;width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--font-display);font-size:30px;transform:rotate(-8deg);box-shadow:0 4px 0 var(--accent-deep),inset 0 0 0 4px rgba(255,255,255,.35)}
+.brand{flex:1 1 260px;min-width:0}
+header h1{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(30px,5vw,42px);line-height:1.1;letter-spacing:.04em}
+header h1 span{display:inline-block}
+header h1 span:nth-child(4n+1){color:var(--accent);transform:rotate(-4deg)}
+header h1 span:nth-child(4n+2){color:#e89a00;transform:translateY(-3px)}
+header h1 span:nth-child(4n+3){color:var(--mint);transform:rotate(3deg)}
+header h1 span:nth-child(4n+4){color:var(--sky);transform:translateY(2px)}
+header p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.modes{display:flex;gap:4px;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 3px 0 var(--line)}
+.modes button{min-height:44px;padding:6px 18px;border:none;border-radius:999px;background:none;color:var(--ink);font-family:var(--font-display);font-size:17px;cursor:pointer}
+.modes button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.work{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:22px;align-items:start}
+@media (max-width:920px){.work{grid-template-columns:minmax(0,1fr)}}
+.stage-col{min-width:0;display:flex;justify-content:center}
+.stage-wrap{position:relative;width:100%;max-width:min(100%,calc(100vh - 200px));min-width:min(100%,320px);aspect-ratio:1/1;background:var(--mat);border-radius:28px;overflow:hidden;border:6px solid var(--surface);box-shadow:0 6px 0 var(--line)}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.fsbtn{position:absolute;top:12px;right:12px;min-height:40px;padding:4px 14px;border:none;border-radius:999px;background:rgba(20,25,40,.6);color:#fff;font:inherit;font-size:15px;cursor:pointer;z-index:3}
+.fscap,.fsnav{display:none}
+.stage-wrap.is-fs{position:fixed;top:0;left:0;z-index:50;width:100vw;height:100vh;height:100dvh;max-width:none;min-width:0;aspect-ratio:auto;border:none;border-radius:0;box-shadow:none}
+.stage-wrap:fullscreen{width:100vw;height:100dvh;max-width:none;aspect-ratio:auto;border:none;border-radius:0}
+.stage-wrap.is-fs .fsbtn,.stage-wrap:fullscreen .fsbtn{top:max(12px,calc(env(safe-area-inset-top,0px) + 8px));right:max(12px,calc(env(safe-area-inset-right,0px) + 8px));min-height:48px;font-size:17px;padding:4px 18px;background:rgba(20,25,40,.75)}
+.stage-wrap.is-fs .fscap,.stage-wrap:fullscreen .fscap{display:flex;flex-direction:column;gap:4px;position:absolute;top:max(14px,env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));right:170px;pointer-events:none}
+.fscap b{font-family:var(--font-display);font-weight:400;font-size:clamp(26px,3.6vw,52px);color:#ffe27a;text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.fscap span{font-size:clamp(18px,2.2vw,32px);color:#fff;max-width:28em;text-shadow:0 2px 6px rgba(0,0,0,.5);line-height:1.5}
+.stage-wrap.is-fs .fsnav,.stage-wrap:fullscreen .fsnav{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px;position:absolute;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:max(14px,calc(env(safe-area-inset-bottom,0px) + 8px));max-width:720px;margin-left:auto}
+.fsnav button{min-height:60px;padding:6px 10px;border:none;border-radius:999px;background:rgba(255,255,255,.92);color:#2c2f3b;font-family:var(--font-display);font-size:22px;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.fsnav #fsNext{background:var(--accent);color:#fff}
+.stage-wrap.is-fs .hud,.stage-wrap:fullscreen .hud{display:none}
+@media (max-width:600px){ .fscap b{font-size:22px} .fscap span{font-size:16px} .stage-wrap.is-fs .fscap{right:150px} .fsnav button{font-size:17px;padding:4px 6px;white-space:nowrap} .stage-wrap.is-fs .fsnav,.stage-wrap:fullscreen .fsnav{gap:8px} }
+/* 手機：固定在底部的上一步／下一步 */
+.mbar{display:none}
+@media (max-width:920px){
+  body.lesson-mode .mbar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:2px solid var(--line);box-shadow:0 -4px 14px rgba(0,0,0,.08);padding-block:8px calc(8px + env(safe-area-inset-bottom,0px));padding-left:max(10px,env(safe-area-inset-left,0px));padding-right:max(10px,env(safe-area-inset-right,0px))}
+  body.lesson-mode{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .mbar button{min-height:54px;min-width:84px;padding:4px 12px;white-space:nowrap;border:2px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font-family:var(--font-display);font-size:19px;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+  .mbar #mNext{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 3px 0 var(--accent-deep)}
+  .mbar .mid{min-width:0;text-align:center;line-height:1.25;cursor:pointer;background:none;border:none;color:var(--ink);font:inherit;box-shadow:none}
+  .mbar .mid small{display:block;font-size:13px;color:var(--muted)}
+  .mbar .mid b{display:block;font-family:var(--font-display);font-weight:400;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  body.lesson-mode .hud{display:none}
+  .fsbtn{top:8px;right:8px;min-height:36px;padding:2px 12px;font-size:14px}
+}
+.hud{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;flex-wrap:wrap}
+.hud span{background:rgba(20,25,40,.6);color:#fff;padding:6px 14px;border-radius:999px;font-size:15px;line-height:1.4;max-width:100%}
+.hud .tag{font-family:var(--font-display);font-size:16px}
+.hud .tag:empty{display:none}
+.panel{min-width:0;background:var(--surface);border:2px solid var(--line);border-radius:28px;padding:20px;display:flex;flex-direction:column;gap:16px;box-shadow:0 6px 0 var(--line)}
+.panel section{display:flex;flex-direction:column;gap:16px}
+.group{display:flex;flex-direction:column;gap:8px}
+.gh{margin:0;font-family:var(--font-display);font-weight:400;font-size:26px;line-height:1.2}
+.label{font-size:14px;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.label em{font-style:normal;font-weight:500}
+.lhead{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.lnum{font-family:var(--font-display);font-size:15px;background:var(--sun);color:#2c2f3b;padding:2px 12px;border-radius:999px;transform:rotate(-2deg)}
+.lhead h2{margin:0;font-family:var(--font-display);font-weight:400;font-size:38px;line-height:1.1}
+.lhead h2 small{font-size:18px;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:14px;padding:3px 12px;border-radius:999px;background:var(--bg);border:2px solid var(--line)}
+.stars{color:#f2a900;letter-spacing:1px}
+.seg,.row{display:flex;flex-wrap:wrap;gap:8px}
+.seg button,.row button,.ghost{flex:1 1 auto;min-height:46px;padding:8px 14px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;box-shadow:0 3px 0 var(--line);transition:transform .12s,box-shadow .12s}
+.seg.count button{font-family:var(--font-display);font-size:16px;font-weight:400;padding:8px 10px}
+.seg button:active,.row button:active,.ghost:active,.navrow button:active,.cta:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.seg button[aria-pressed="true"],.ghost[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink);box-shadow:0 3px 0 var(--muted)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px}
+.swatches button{min-height:44px;border:3px solid var(--surface);border-radius:50%;aspect-ratio:1;cursor:pointer;box-shadow:0 0 0 2px var(--line)}
+.swatches button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ink)}
+.stepcard{background:var(--accent-soft);border:2px dashed var(--accent);border-radius:22px;padding:14px 18px;display:flex;flex-direction:column;gap:6px}
+.sc-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sc-top span{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sc-top b{font-family:var(--font-display);font-weight:400;font-size:26px;line-height:1.2}
+.stepcard p{margin:0;font-size:18px;line-height:1.65}
+.stepcard p.tip{font-size:15px;color:var(--muted)}
+.navrow{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px}
+.navrow button{min-height:56px;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;font:inherit;font-size:16px;font-weight:500;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+.steplist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.steplist button{width:100%;display:flex;align-items:center;gap:10px;min-height:38px;padding:4px 10px;border:none;border-radius:999px;background:none;color:var(--muted);font:inherit;font-size:15px;cursor:pointer;text-align:left}
+.steplist .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;border:2px solid currentColor;font-variant-numeric:tabular-nums}
+.steplist button.done{color:var(--ink)}
+.steplist button.done .n{background:var(--mint);color:#fff;border-color:var(--mint)}
+.steplist button[aria-current="step"]{background:var(--accent-soft);color:var(--ink);font-weight:700}
+.steplist button[aria-current="step"] .n{background:var(--accent);border-color:var(--accent);color:#fff}
+.howto{margin:0;font-size:15px;background:var(--accent-soft);border-radius:14px;padding:8px 12px}
+.cta{min-height:56px;border:none!important;border-radius:999px!important;background:var(--accent)!important;color:var(--accent-ink)!important;font-family:var(--font-display)!important;font-size:20px!important;cursor:pointer;letter-spacing:.06em;box-shadow:0 4px 0 var(--accent-deep)!important}
+.ghost{width:100%}
+.note{margin:0;font-size:14px;color:var(--muted)}
+.a4box{background:var(--bg);border:2px solid var(--line);border-radius:22px;padding:12px}
+.a4box img{width:100%;max-width:100%;aspect-ratio:210/297;display:block;background:#fff;border-radius:6px;box-shadow:0 3px 0 var(--line);transform:rotate(-1deg)}
+.a4box img:not([src]){visibility:hidden}
+.txt{min-height:44px;border:2px solid var(--line);border-radius:999px;padding:6px 16px;font:inherit;font-size:16px;background:var(--surface);color:var(--ink);width:100%}
+.filebtn{position:relative;overflow:hidden}
+.filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.library{display:flex;flex-direction:column;gap:14px}
+.libhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.libhead h2{margin:0;font-family:var(--font-display);font-weight:400;font-size:30px}
+.libhead .cta{padding:0 22px;min-height:50px;font-size:18px!important}
+.lib-group{display:flex;flex-direction:column;gap:8px}
+.lib-group h3{margin:0;font-family:var(--font-display);font-weight:400;font-size:18px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:4px;padding:8px 8px 10px;border:2px solid var(--line);background:var(--surface);border-radius:20px;cursor:pointer;color:var(--ink);font:inherit;text-align:left;box-shadow:0 4px 0 var(--line);transition:transform .15s}
+.card:hover{transform:rotate(-2deg) translateY(-3px)}
+.card:nth-child(even):hover{transform:rotate(2deg) translateY(-3px)}
+.card .th{background:var(--mat);border-radius:14px;aspect-ratio:1;display:grid;place-items:center;overflow:hidden}
+.card img{width:84%;aspect-ratio:1;display:block;border-radius:3px;box-shadow:2px 3px 0 rgba(0,0,0,.18);background:#fffdf8}
+.card img:not([src]){visibility:hidden}
+.card .cn{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.card b{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.2}
+.card .stars{font-size:13px}
+.card[aria-current="true"]{border-color:var(--accent);box-shadow:0 4px 0 var(--accent)}
+details.notes{background:var(--surface);border:2px solid var(--line);border-radius:24px;padding:14px 20px;box-shadow:0 4px 0 var(--line)}
+details.notes summary{cursor:pointer;font-family:var(--font-display);font-size:20px}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 24px;margin-top:10px}
+.notes-grid h3{margin:0 0 4px;font-size:16px}
+.notes-grid p,.notes-grid ul{margin:0;color:var(--muted);font-size:15px;max-width:65ch}
+.notes-grid ul{padding-left:1.2em}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 20px;border-radius:999px;font-size:15px;z-index:60;max-width:calc(100% - 32px);text-align:center;transition:opacity .3s}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){ .card:hover,.card:nth-child(even):hover{transform:none} }
+</style>
+
+<div class="bunting" id="bunting" aria-hidden="true"></div>
+<div class="app">
+  <header class="top">
+    <div class="seal" aria-hidden="true">點</div>
+    <div class="brand">
+      <h1 aria-label="連點成畫"><span>連</span><span>點</span><span>成</span><span>畫</span></h1>
+      <p>12 個數字連連看教案：從起點 1 開始一點一點連起來，猜猜看是什麼，再塗上顏色。可以換成 ABC、注音、跳數、倒數或算式，附 A4 學習單。</p>
+    </div>
+    <div class="modes" role="tablist" aria-label="模式">
+      <button role="tab" data-view="lesson" aria-selected="true">12 個教案</button>
+      <button role="tab" data-view="design" aria-selected="false">自己設計</button>
+    </div>
+  </header>
+
+  <main class="work">
+    <div class="stage-col">
+      <div class="stage-wrap" id="wrap">
+        <canvas id="stage" aria-label="連點成畫舞台"></canvas>
+        <div class="hud"><span id="hint">準備中…</span><span class="tag" id="tag"></span></div>
+        <button class="fsbtn" id="fsBtn" aria-label="全螢幕觀看">⛶ 全螢幕</button>
+        <div class="fscap" id="fsCap"><b id="fsTitle"></b><span id="fsText"></span></div>
+        <div class="fsnav" id="fsNav"><button id="fsPrev">◀ 上一步</button><button id="fsReplay">↻ 再看</button><button id="fsNext">下一步 ▶</button></div>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <section id="lessonPanel">
+        <div class="lhead">
+          <span class="lnum" id="lNum"></span>
+          <h2 id="lName"></h2>
+          <div class="meta" id="lMeta"></div>
+        </div>
+        <div class="stepcard" aria-live="polite">
+          <div class="sc-top"><span id="scNum"></span><b id="scTitle"></b></div>
+          <p id="scText"></p>
+          <p class="tip" id="scTip"></p>
+        </div>
+        <div class="navrow">
+          <button id="prevStep">上一步</button>
+          <button id="replayStep">再看一次</button>
+          <button id="nextStep" class="cta">下一步</button>
+        </div>
+        <ol class="steplist" id="stepList"></ol>
+        <div class="group">
+          <span class="label">玩法（依程度選）</span>
+          <div class="seg count" data-key="count">
+            <button data-v="num">1 2 3</button><button data-v="abc">A B C</button><button data-v="zhu">ㄅㄆㄇ</button>
+            <button data-v="skip">跳數 2 4 6</button><button data-v="down">倒數 3 2 1</button><button data-v="math">算式 2+3</button>
+          </div>
+        </div>
+        <div class="group">
+          <span class="label">點數疏密 <em id="densNote"></em></span>
+          <div class="seg" data-key="density">
+            <button data-v="sparse">疏（點少）</button><button data-v="std">標準</button><button data-v="dense">密（點多）</button>
+          </div>
+        </div>
+        <div class="group">
+          <span class="label">字級</span>
+          <div class="seg" data-key="fs">
+            <button data-v="std">標準</button><button data-v="big">大</button><button data-v="xl">特大</button>
+          </div>
+        </div>
+        <div class="group">
+          <span class="label">每一段連幾個點就停</span>
+          <div class="seg" data-key="seg">
+            <button data-v="5">5 點</button><button data-v="10">10 點</button><button data-v="20">20 點</button>
+          </div>
+        </div>
+        <div class="group">
+          <span class="label">動作速度</span>
+          <div class="seg" data-key="speed">
+            <button data-v="slow">慢</button><button data-v="mid">中</button><button data-v="fast">快</button>
+          </div>
+        </div>
+        <button class="ghost" id="speakBtn" aria-pressed="false">🔈 連到每一點時唸出來</button>
+        <button class="ghost" id="autoPlay">從頭自動播放整課</button>
+        <div class="group a4box">
+          <span class="label">A4 學習單：大點大字、起點標記，連完可以著色</span>
+          <img id="a4img" alt="這一課的 A4 學習單預覽">
+          <span class="label">學習單版本</span>
+          <div class="seg" data-key="pdfv">
+            <button data-v="cur">照上面的設定</button><button data-v="easy">大字簡易版</button><button data-v="hard">挑戰版</button>
+          </div>
+          <div class="row"><button id="a4One">下載這課 A4（PDF）</button><button id="a4All">全部 12 課（PDF）</button></div>
+          <p class="note">列印時選「實際大小 100%」，點和字才會是設定的大小。大字簡易版＝點少＋特大字；挑戰版＝點多＋標準字。</p>
+        </div>
+        <button class="ghost" id="lRecord">錄下整課過程（影片，含字幕）</button>
+        <button class="cta" id="backDesign" hidden>回去修改我的設計</button>
+      </section>
+
+      <section id="designPanel" hidden>
+        <div class="group">
+          <h2 class="gh">做自己的連點畫</h2>
+          <p class="howto" id="dHow">可以先上傳一張簡單的圖當底圖，沿著外框一下一下點出點，會自動編號。畫好按「播放」，就會變成一步一步的連點動畫和 A4 學習單。</p>
+        </div>
+        <div class="row">
+          <button class="filebtn">上傳底圖描邊<input type="file" id="imgFile" accept="image/*" aria-label="上傳底圖"></button>
+          <button id="imgClear" disabled>拿掉底圖</button>
+        </div>
+        <div class="group">
+          <span class="label">工具</span>
+          <div class="seg" data-key="tool">
+            <button data-v="dot">點一下放點</button><button data-v="draw">手畫自動放點</button><button data-v="erase">刪除點</button>
+          </div>
+        </div>
+        <div class="row">
+          <button id="newStroke">新的一筆（筆拿起來）</button><button id="closeStroke" aria-pressed="false">這一筆連回起點</button>
+        </div>
+        <div class="row">
+          <button id="undo">復原</button><button id="redo">重做</button><button id="clearAll">全部清空</button>
+        </div>
+        <div class="row"><button id="sample">載入範例：小帆船</button></div>
+        <div class="group">
+          <span class="label">完成後的顏色</span>
+          <div class="swatches" id="dColors"></div>
+        </div>
+        <div class="group">
+          <label class="label" for="dName">名稱（就是「猜猜看」的答案）</label>
+          <input id="dName" class="txt" type="text" maxlength="12" value="我的設計">
+          <div class="meta" id="dStat"></div>
+        </div>
+        <button class="cta" id="dPlay">播放我的連點動畫</button>
+        <div class="group a4box">
+          <span class="label">我的 A4 學習單</span>
+          <img id="dA4img" alt="我的設計 A4 學習單預覽">
+          <button class="ghost" id="dA4">下載我的 A4 學習單（PDF）</button>
+          <p class="note">玩法和字級會照「12 個教案」那邊的設定。列印時選「實際大小 100%」。</p>
+        </div>
+        <button class="ghost" id="dRecord">把我的動畫錄成影片</button>
+      </section>
+    </aside>
+  </main>
+
+  <section class="library" id="library">
+    <div class="libhead"><h2>12 個教案</h2><button class="cta" id="a4All2">下載 12 課 A4 學習單（PDF）</button></div>
+  </section>
+
+  <details class="notes">
+    <summary>給帶領者：練到哪些能力、怎麼分級、怎麼鼓勵</summary>
+    <div class="notes-grid">
+      <div>
+        <h3>練到哪些能力</h3>
+        <ul>
+          <li>注意力：一直記得「現在數到幾」，不被旁邊的點拉走。</li>
+          <li>數序與排序：1、2、3 或 A、B、C 的順序，倒數和跳數更要動腦。</li>
+          <li>視覺搜尋：在整張紙上找下一個點，眼睛要有系統地掃。</li>
+          <li>手眼協調：筆尖從一點畫到另一點，控制方向和停的位置。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>由簡到難</h3>
+        <ul>
+          <li>★ 第 1–4 課：10–20 點，形狀簡單，先熟悉「找點、連線」。</li>
+          <li>★★ 第 5–8 課：20–40 點，有兩筆畫，要學會看 ★ 把筆拿起來。</li>
+          <li>★★★ 第 9–12 課：40–80 點，點比較密，需要耐心，可以分兩次完成。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>依程度選玩法（失智友善）</h3>
+        <ul>
+          <li>數字 1、2、3 最熟悉，先從這個開始。</li>
+          <li>ABC、注音ㄅㄆㄇ：喚起上學時的記憶，也換換腦袋。</li>
+          <li>跳數、倒數：給認知比較好的學員，數序要轉個彎。</li>
+          <li>算式點：每點是一題加減法，答案就是下一點，同時練計算。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>視力或手部比較弱</h3>
+        <p>選「疏」加「特大」字，點少、字大，或直接印「大字簡易版」。可以放大印成 A3、加檯燈、用粗的彩色筆。手會抖的學員可以用直尺輔助，或先用手指點著數，再用筆畫。</p>
+      </div>
+      <div>
+        <h3>怎麼帶</h3>
+        <p>一段一段來：每連 10 點就停下來，等大家都跟上再按下一步。卡住時給線索而不是答案：「下一個是 7，在 6 的附近找找看。」連完先別說答案，讓大家猜，再揭曉、聊一聊相關的回憶。</p>
+      </div>
+      <div>
+        <h3>鼓勵的方式</h3>
+        <p>稱讚過程：「你都沒有跳號，好專心！」連錯沒關係，換一枝顏色的筆從對的點繼續就好。猜錯也很棒，問問「為什麼覺得像？」。一次約 15–20 分鐘，累了就先休息，下次再接著連。</p>
+      </div>
+    </div>
+  </details>
+</div>
+<nav class="mbar" id="mbar" aria-label="步驟切換">
+  <button id="mPrev">◀ 上一步</button>
+  <button class="mid" id="mMid" aria-label="再看一次這一步"><small id="mNum"></small><b id="mTitle"></b></button>
+  <button id="mNext">下一步 ▶</button>
+</nav>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(() => {
+'use strict';
+const D2R = Math.PI/180;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mk = (w,h) => { const c = document.createElement('canvas'); c.width = w; c.height = h || w; return c; };
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const lerp = (a,b,t) => a + (b-a)*t;
+const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+const easeOut = t => 1-Math.pow(1-t,3);
+const dist = (a,b) => Math.hypot(a[0]-b[0], a[1]-b[1]);
+const FONT = '"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif';
+const DISPLAY = '"Huninn","Noto Sans TC","PingFang TC",sans-serif';
+function RNG(seed){ let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ t>>>15, t | 1); t ^= t + Math.imul(t ^ t>>>7, t | 61); return ((t ^ t>>>14) >>> 0) / 4294967296; }; }
+const hash = s => { let h = 2166136261; for (const ch of s){ h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+
+/* ---------- 路徑：M L C Q Z，加上 O cx cy r（圓）；座標 0–1000 ---------- */
+function parseD(d, t){
+  const tk = d.match(/[MLCQZO]|-?\d*\.?\d+/g) || [], out = []; let i = 0, cur = null, x = 0, y = 0;
+  const num = () => +tk[i++], T = (px,py) => t ? [t[0]+px*t[2], t[1]+py*t[2]] : [px,py];
+  while (i < tk.length){
+    const c = tk[i++];
+    if (c === 'M'){ x = num(); y = num(); cur = {pts:[T(x,y)], closed:false}; out.push(cur); }
+    else if (c === 'L'){ x = num(); y = num(); cur.pts.push(T(x,y)); }
+    else if (c === 'C'){ const x1=num(), y1=num(), x2=num(), y2=num(), x3=num(), y3=num();
+      for (let k=1;k<=24;k++){ const s=k/24, m=1-s; cur.pts.push(T(m*m*m*x+3*m*m*s*x1+3*m*s*s*x2+s*s*s*x3, m*m*m*y+3*m*m*s*y1+3*m*s*s*y2+s*s*s*y3)); } x=x3; y=y3; }
+    else if (c === 'Q'){ const x1=num(), y1=num(), x2=num(), y2=num();
+      for (let k=1;k<=16;k++){ const s=k/16, m=1-s; cur.pts.push(T(m*m*x+2*m*s*x1+s*s*x2, m*m*y+2*m*s*y1+s*s*y2)); } x=x2; y=y2; }
+    else if (c === 'Z'){ cur.closed = true; if (cur.pts.length > 1 && dist(cur.pts[0], cur.pts[cur.pts.length-1]) < .5) cur.pts.pop(); }
+    else if (c === 'O'){ const cx=num(), cy=num(), r=num(); cur = {pts:[], closed:true};
+      for (let k=0;k<48;k++){ const a = -Math.PI/2 + k/48*2*Math.PI; cur.pts.push(T(cx+Math.cos(a)*r, cy+Math.sin(a)*r)); } out.push(cur); }
+  }
+  return out;
+}
+function polyPath(pts, closed){ const p = new Path2D(); if (!pts.length) return p; p.moveTo(pts[0][0], pts[0][1]); for (let i=1;i<pts.length;i++) p.lineTo(pts[i][0], pts[i][1]); if (closed) p.closePath(); return p; }
+function dPath(d){ const p = new Path2D(); if (!d) return p; for (const s of parseD(d)) p.addPath(polyPath(s.pts, s.closed)); return p; }
+function inPoly(x, y, p){ let ins = false; for (let i=0, j=p.length-1; i<p.length; j=i++){ const [xi,yi] = p[i], [xj,yj] = p[j];
+  if ((yi>y) !== (yj>y) && x < (xj-xi)*(y-yi)/(yj-yi)+xi) ins = !ins; } return ins; }
+const starPts = (cx,cy,R,r,n=5,rot=-90) => { const o=[]; for (let i=0;i<2*n;i++){ const a=(rot+i*180/n)*D2R, rr=i%2?r:R; o.push([cx+Math.cos(a)*rr, cy+Math.sin(a)*rr]); } return o; };
+
+/* ---------- 12 個圖形 ---------- */
+const HEART = 'M0 -190 C10 -215,30 -245,60 -270 C170 -360,350 -300,370 -140 C390 40,240 200,0 360 C-240 200,-390 40,-370 -140 C-350 -300,-170 -360,-60 -270 C-30 -245,-10 -215,0 -190Z';
+const FLOWER = (() => { const o = []; for (let k=0;k<120;k++){ const ph = (-90+k*3)*D2R; let best = 0;
+  for (let j=0;j<5;j++){ const th = (-90+j*72)*D2R, D = 150, R = 112, s = Math.sin(ph-th), q = R*R - D*D*s*s; if (q < 0) continue; best = Math.max(best, D*Math.cos(ph-th) + Math.sqrt(q)); }
+  o.push([500+Math.cos(ph)*best, 375+Math.sin(ph)*best]); } return o; })();
+const T101 = (() => { const R = [[500,40],[518,140],[556,140],[556,205]], top = 205, h = 95;
+  for (let i=0;i<5;i++){ const yt = top + i*h; R.push([670,yt], [612,yt+h]); }
+  R.push([690,880],[790,880],[790,945]);
+  return [...R, ...R.slice(1).reverse().map(([x,y]) => [1000-x, y])]; })();
+const TW = [[121.51,25.30],[121.63,25.22],[121.75,25.14],[121.93,25.03],[121.85,24.85],[121.83,24.60],[121.75,24.40],[121.62,24.05],[121.60,23.95],[121.50,23.50],[121.40,23.10],[121.20,22.80],[120.95,22.45],[120.88,22.10],[120.84,21.90],[120.72,21.94],[120.70,22.10],[120.62,22.35],[120.45,22.48],[120.28,22.60],[120.18,22.95],[120.10,23.10],[120.13,23.40],[120.15,23.70],[120.30,23.95],[120.42,24.10],[120.55,24.30],[120.70,24.55],[120.90,24.80],[121.05,25.00],[121.25,25.10],[121.40,25.18]];
+const TAIWAN = (() => { const p = TW.map(([lon,lat]) => [500+(lon-121.0)*235*.92, 500-(lat-23.6)*257*.92]), n = p.length, o = [];
+  for (let i=0;i<n;i++){ const p0 = p[(i-1+n)%n], p1 = p[i], p2 = p[(i+1)%n], p3 = p[(i+2)%n];
+    for (let k=0;k<5;k++){ const t = k/5, t2 = t*t, t3 = t2*t;
+      o.push([0,1].map(j => .5*((2*p1[j]) + (-p0[j]+p2[j])*t + (2*p0[j]-5*p1[j]+4*p2[j]-p3[j])*t2 + (-p0[j]+3*p1[j]-3*p2[j]+p3[j])*t3))); } }
+  return o; })();
+
+const LESSONS = [
+  {name:'愛心', level:1, n:[8,10,16], theme:'入門・送給心愛的人', hint:'送給心愛的人的形狀', choices:['愛心','蘋果','氣球'], talk:'聊一聊：最想把這顆愛心送給誰？',
+   paths:[{d:HEART, t:[500,530,.95], fill:'#f0607a'}], paint:[['#ff9fb2','M330 330 C300 380,300 430,330 470 C350 430,370 380,330 330Z']]},
+  {name:'星星', level:1, n:[10,10,20], theme:'入門・夜空', hint:'晚上抬頭，在天空閃閃發亮', choices:['星星','雪花','花'], talk:'聊一聊：小時候在哪裡看過滿天的星星？',
+   paths:[{pts:starPts(500,540,410,170), fill:'#f6c636'}]},
+  {name:'房子', level:1, n:[15,16,24], theme:'我的家', hint:'有屋頂、有門，是我們住的地方', choices:['房子','帳篷','火車'], talk:'聊一聊：小時候住的房子長什麼樣子？',
+   paths:[{pts:[[500,150],[650,275],[650,175],[730,175],[730,342],[860,450],[780,450],[780,880],[580,880],[580,700],[420,700],[420,880],[220,880],[220,450],[140,450]], fill:'#f6c636'}],
+   inner:'M270 520 L370 520 L370 620 L270 620Z M630 520 L730 520 L730 620 L630 620Z M320 520 L320 620 M680 520 L680 620',
+   paint:[['#e2493f','M500 150 L860 450 L140 450Z'],['#8d5b3b','M650 275 L650 175 L730 175 L730 342Z M420 700 L580 700 L580 880 L420 880Z'],['#86cdf0','M270 520 L370 520 L370 620 L270 620Z M630 520 L730 520 L730 620 L630 620Z'],['#7cc35a','M120 880 L880 880 L880 905 L120 905Z']]},
+  {name:'魚', level:1, n:[12,18,26], theme:'海洋', hint:'在水裡游來游去', choices:['魚','鳥','葉子'], talk:'聊一聊：最喜歡吃哪一種魚？怎麼煮最好吃？',
+   paths:[{d:'M150 500 C250 300,550 280,700 450 L860 300 L820 500 L860 700 L700 550 C550 720,250 700,150 500Z', fill:'#f28a2e'}],
+   inner:'O270 470 20 M370 400 C410 460,410 540,370 600',
+   paint:[['#f6c636','M700 450 L860 300 L820 500 L860 700 L700 550Z'],['#ffb36b','M430 420 C470 450,470 480,430 510 C390 480,390 450,430 420Z M540 450 C580 480,580 510,540 540 C500 510,500 480,540 450Z']]},
+  {name:'茶壺', level:2, n:[24,32,44], theme:'生活・泡茶', hint:'泡茶的時候用得到', choices:['茶壺','花瓶','水桶'], talk:'聊一聊：平常喜歡喝什麼茶？跟誰一起喝？',
+   paths:[{d:'M330 820 C170 760,180 520,350 470 L385 440 C395 400,440 382,478 378 C440 345,455 300,500 300 C545 300,560 345,522 378 C560 382,605 400,615 440 L650 470 C700 490,720 520,730 560 L860 420 L885 440 L770 650 C740 760,700 800,670 820Z', fill:'#38c1a0'},
+          {d:'M252 545 C110 500,80 790,262 750', stroke:'#8d5b3b', w:22}],
+   inner:'M385 440 L615 440',
+   paint:[['#fbf8f1','M300 600 C400 620,600 620,720 600 L725 640 C600 660,400 660,296 640Z'],['#f390b5','O420 700 26 O520 715 26 O620 700 26']]},
+  {name:'花', level:2, n:[20,30,42], theme:'春天・花園', hint:'春天在花園裡開，蜜蜂最喜歡', choices:['花','太陽','風車'], talk:'聊一聊：家裡或以前種過什麼花？',
+   paths:[{pts:FLOWER, fill:'#f390b5'}, {d:'M500 566 C485 680,515 800,500 925', stroke:'#2f8a55', w:18}, {d:'M512 790 C570 700,660 690,735 705 C675 775,590 805,512 790Z', fill:'#7cc35a'}],
+   inner:'O500 375 72', paint:[['#f6c636','O500 375 72']]},
+  {name:'蝴蝶', level:2, n:[22,34,48], theme:'春天・昆蟲', hint:'在花叢間飛來飛去，翅膀很漂亮', choices:['蝴蝶','蜻蜓','蝙蝠'], talk:'聊一聊：在哪裡看過很多蝴蝶？',
+   paths:[{d:'M500 380 C560 250,760 120,860 200 C930 260,850 420,700 470 C820 520,820 700,700 760 C620 800,540 700,500 600 C460 700,380 800,300 760 C180 700,180 520,300 470 C150 420,70 260,140 200 C240 120,440 250,500 380Z', fill:'#9b6cf0'}],
+   inner:'M500 380 C530 450,530 560,500 600 C470 560,470 450,500 380Z M494 384 C470 300,440 250,400 225 M506 384 C530 300,560 250,600 225',
+   paint:[['#f6c636','O300 300 55 O700 300 55 O360 650 40 O640 650 40'],['#8d5b3b','M500 380 C530 450,530 560,500 600 C470 560,470 450,500 380Z']]},
+  {name:'貓', level:2, n:[26,38,52], theme:'動物・寵物', hint:'會喵喵叫，喜歡曬太陽', choices:['貓','狗','兔子'], talk:'聊一聊：有沒有養過貓或狗？取什麼名字？',
+   paths:[{d:'M330 140 L400 270 C460 255,540 255,600 270 L670 140 L700 300 C750 380,720 460,640 490 C740 540,790 700,770 880 L840 880 C900 880,930 820,910 760 C900 720,930 690,950 720 C975 790,935 930,840 930 L260 930 C200 860,210 640,360 490 C280 460,250 380,300 300Z', fill:'#f28a2e'}],
+   inner:'O430 370 18 O570 370 18 M485 420 L515 420 L500 438Z M420 432 L330 415 M420 447 L330 457 M580 432 L670 415 M580 447 L670 457 M460 770 L460 925 M540 770 L540 925',
+   paint:[['#ffd2a6','M500 520 C580 560,600 760,560 925 L440 925 C400 760,420 560,500 520Z'],['#f390b5','M345 185 L385 262 L318 290Z M655 185 L615 262 L682 290Z']]},
+  {name:'腳踏車', level:3, n:[36,50,70], theme:'交通・懷舊', hint:'兩個輪子，要用腳踩才會前進', choices:['腳踏車','機車','推車'], talk:'聊一聊：第一次學騎腳踏車是誰教的？',
+   paths:[{d:'O225 650 150', stroke:'#3b3b46', w:20}, {d:'O775 650 150', stroke:'#3b3b46', w:20},
+          {d:'M225 650 L480 650 L660 420 L395 420Z', stroke:'#e2493f', w:16},
+          {d:'M775 650 L660 420 L640 320 L740 300', stroke:'#e2493f', w:16}, {d:'M310 340 L460 330', stroke:'#8d5b3b', w:20}],
+   inner:'O225 650 14 O775 650 14 M480 650 L395 420 M395 420 L385 340 O480 650 30 M225 515 L225 785 M90 650 L360 650 M775 515 L775 785 M640 650 L910 650'},
+  {name:'台灣', level:3, n:[36,56,78], theme:'家鄉・地理', hint:'我們住的島，形狀像一條番薯', choices:['台灣','番薯','葉子'], talk:'聊一聊：住在台灣的哪裡？最想去哪個縣市玩？',
+   paths:[{pts:TAIWAN, fill:'#7cc35a'}], inner:'O512 540 10',
+   paint:[['#2f8a55','M520 230 C560 330,580 450,540 560 C520 650,470 740,440 790 C480 680,500 600,500 520 C500 420,500 320,520 230Z']]},
+  {name:'台北 101', level:3, n:[36,50,66], theme:'城市・地標', hint:'台北最有名的高樓，跨年會放煙火', choices:['台北 101','電塔','燈塔'], talk:'聊一聊：有沒有上去過 101？跨年看過煙火嗎？',
+   paths:[{pts:T101, fill:'#5fb8c9'}], inner:'M465 875 L535 875 L535 945 M465 875 L465 945',
+   paint:[['#3d8ea0','M556 205 L670 205 L612 300 L388 300 L330 205 L444 205Z M670 395 L612 490 L388 490 L330 395Z M670 585 L612 680 L388 680 L330 585Z'],['#f6c636','O500 252 12 O500 442 12 O500 632 12']]},
+  {name:'龍舟', level:3, n:[44,66,84], theme:'節慶・端午節', hint:'端午節在河上划的船，有龍頭', choices:['龍舟','鱷魚','火車'], talk:'聊一聊：端午節會包粽子嗎？喜歡北部粽還是南部粽？',
+   paths:[{d:'M150 360 C200 320,270 330,290 380 C310 430,300 470,330 510 L830 510 C870 490,880 430,860 370 C910 390,930 470,900 540 C880 600,820 640,760 650 L300 650 C240 640,200 600,190 560 L110 520 L170 485 L95 450Z', fill:'#e2493f'},
+          {d:'M600 225 L770 282 L600 340 L600 462', stroke:'#8d5b3b', w:12}],
+   inner:'O175 410 13 M400 560 C420 595,440 595,460 560 M500 560 C520 595,540 595,560 560 M600 560 C620 595,640 595,660 560 M90 730 C140 700,190 760,240 730 C290 700,340 760,390 730 M600 730 C650 700,700 760,750 730 C800 700,850 760,900 730',
+   paint:[['#2f8a55','M95 450 L150 360 C200 320,270 330,290 380 C310 430,300 470,330 510 L330 650 L300 650 C240 640,200 600,190 560 L110 520 L170 485Z M830 510 C870 490,880 430,860 370 C910 390,930 470,900 540 C880 600,820 640,760 650 L760 510Z'],['#f6c636','M600 225 L770 282 L600 340Z M330 600 L760 600 L760 615 L330 615Z']]}
+];
+const stars = n => '★'.repeat(n) + '☆'.repeat(3-n);
+
+/* ---------- 編號玩法 ---------- */
+const ZHU = [...'ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩ'];
+const ABC = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
+const pick = (arr, i) => i < arr.length ? arr[i] : arr[Math.floor(i/arr.length)-1] + arr[i%arr.length];
+const COUNT = {
+  num:{name:'數字', unit:'數字', intro:'接著照 1、2、3… 的順序一個接一個連'},
+  abc:{name:'英文字母', unit:'字母', intro:'接著照 A、B、C… 的字母順序連'},
+  zhu:{name:'注音', unit:'注音', intro:'接著照ㄅ、ㄆ、ㄇ、ㄈ… 的注音順序連'},
+  skip:{name:'跳數', unit:'數字', intro:'接著兩個兩個跳著數：2、4、6、8…'},
+  down:{name:'倒數', unit:'數字', intro:'接著倒過來數，一路數到 1'},
+  math:{name:'算式', unit:'答案', intro:'其他的點寫的是算式，算出答案就知道下一點：答案是 2 的點、答案是 3 的點…'}
+};
+function labelOf(i, n, mode, seed){
+  if (mode === 'abc'){ const t = pick(ABC, i); return {t, say:t}; }
+  if (mode === 'zhu'){ const t = pick(ZHU, i); return {t, say:t}; }
+  if (mode === 'skip'){ const t = String(2*(i+1)); return {t, say:t}; }
+  if (mode === 'down'){ const t = String(n-i); return {t, say:t}; }
+  const v = i+1;
+  if (mode === 'math' && i > 0){
+    const r = RNG(seed + i*131);
+    if (v >= 3 && r() < .5){ const a = 1 + Math.floor(r()*(v-1)); return {t:`${a}+${v-a}`, say:`${a}加${v-a}，等於${v}`}; }
+    const b = 1 + Math.floor(r()*Math.min(9, 3+v)); return {t:`${v+b}-${b}`, say:`${v+b}減${b}，等於${v}`};
+  }
+  return {t:String(v), say:String(v)};
+}
+
+/* ---------- 把一課變成：點、順序、線、編號位置 ---------- */
+const DENS_I = {sparse:0, std:1, dense:2}, DENS_N = {sparse:'疏', std:'標準', dense:'密'};
+const FS = {std:{r:9, f:30, n:'標準'}, big:{r:11.5, f:40, n:'大'}, xl:{r:14, f:54, n:'特大'}};
+let fontP = null;
+const fontsReady = () => fontP || (fontP = Promise.all([document.fonts.load(`40px Huninn`, '123ABCㄅ'), document.fonts.load(`500 30px "Noto Sans TC"`, '連點')]).then(() => document.fonts.ready).catch(()=>{}));
+function corners(pts, closed){
+  const n = pts.length, out = [];
+  for (let i=0;i<n;i++){
+    if (!closed && (i === 0 || i === n-1)){ out.push(i); continue; }
+    const a = pts[(i-1+n)%n], b = pts[i], c = pts[(i+1)%n];
+    let d = Math.abs(Math.atan2(c[1]-b[1], c[0]-b[0]) - Math.atan2(b[1]-a[1], b[0]-a[0])); if (d > Math.PI) d = 2*Math.PI - d;
+    if (d > 32*D2R) out.push(i);
+  }
+  if (closed && out[0] !== 0) out.unshift(0);
+  return out;
+}
+function resample(raw, N){
+  const spans = [];
+  raw.forEach((p, pi) => { const n = p.pts.length, cs = p.cs, m = p.closed ? cs.length : cs.length-1;
+    for (let j=0;j<m;j++){ const a = cs[j], b = p.closed ? (j+1 < cs.length ? cs[j+1] : cs[0]+n) : cs[j+1], seq = [];
+      for (let k=a;k<=b;k++) seq.push(p.pts[k%n]);
+      let len = 0; for (let k=1;k<seq.length;k++) len += dist(seq[k-1], seq[k]);
+      spans.push({pi, seq, len, wt: len*(seq.length > 2 ? 1.6 : 1), m:0}); } });
+  const base = raw.reduce((s,p) => s + p.cs.length, 0), extra = Math.max(0, N - base), W = spans.reduce((s,x) => s + x.wt, 0) || 1;
+  let used = 0; spans.forEach(s => { s.ideal = extra*s.wt/W; s.m = Math.floor(s.ideal); used += s.m; });
+  [...spans].sort((a,b) => (b.ideal-b.m) - (a.ideal-a.m)).slice(0, extra-used).forEach(s => s.m++);
+  const dots = raw.map(() => []);
+  for (const s of spans){ const o = dots[s.pi]; o.push(s.seq[0]);
+    for (let q=1;q<=s.m;q++){ let d = s.len*q/(s.m+1);
+      for (let k=1;k<s.seq.length;k++){ const l = dist(s.seq[k-1], s.seq[k]); if (d <= l || k === s.seq.length-1){ const f = l ? clamp(d/l,0,1) : 0;
+        o.push([s.seq[k-1][0]+(s.seq[k][0]-s.seq[k-1][0])*f, s.seq[k-1][1]+(s.seq[k][1]-s.seq[k-1][1])*f]); break; } d -= l; } } }
+  raw.forEach((p, pi) => { if (!p.closed) dots[pi].push(p.pts[p.pts.length-1]); });
+  return dots;
+}
+const measureCtx = mk(4).getContext('2d');
+async function buildLesson(les, o){
+  await fontsReady();
+  const fsz = FS[o.fs] || FS.big, seed = hash(les.name);
+  let paths;
+  if (les.custom) paths = les.paths.map(p => ({dots:p.dots.map(q => [q[0], q[1]]), closed:p.closed, fill:p.fill, stroke:p.stroke, w:p.w}));
+  else {
+    const raw = les.paths.map(sp => { const g = sp.pts ? {pts:sp.pts.map(p => [p[0], p[1]]), closed:true} : parseD(sp.d, sp.t)[0];
+      return {...sp, pts:g.pts, closed:g.closed, cs:corners(g.pts, g.closed)}; });
+    const dots = resample(raw, les.n[DENS_I[o.density] ?? 1]);
+    paths = raw.map((p,i) => ({dots:dots[i], closed:p.closed, fill:p.fill, stroke:p.stroke, w:p.w}));
+  }
+  paths = paths.filter(p => p.dots.length);
+  // 順序、線（含把筆拿起來、連回起點）
+  const seq = [], edges = []; let pen = -1;
+  paths.forEach((p, pi) => {
+    p.dots.forEach((d, k) => { const i = seq.length; seq.push({x:d[0], y:d[1], pi, k, i});
+      if (k > 0) edges.push({a:i-1, b:i}); else if (pen >= 0) edges.push({a:pen, b:i, lift:true}); pen = i; });
+    if (p.closed && p.dots.length > 2){ const a = seq.length-1, b = seq.length - p.dots.length; edges.push({a, b, close:true}); pen = b; }
+  });
+  const n = seq.length;
+  seq.forEach(d => { const L = labelOf(d.i, n, o.count, seed); d.label = L.t; d.say = L.say; d.newStart = d.k === 0 && d.pi > 0; });
+  // 分段：每段 seg 個點
+  const S_ = +o.seg || 10, segOf = i => Math.floor(i/S_);
+  let K = n ? segOf(n-1)+1 : 1;
+  const lastCount = n - (K-1)*S_; const mergeLast = K > 1 && lastCount < 4;
+  const K0 = K, segFor = i => { const k = segOf(i); return mergeLast && k === K0-1 ? K0-2 : k; };
+  if (mergeLast) K--;
+  let reach = 0;
+  edges.forEach(e => { e.seg = e.close ? segFor(e.a) : segFor(e.b); if (!e.close && !e.lift) reach = e.b; if (e.lift) reach = e.b; e.reach = reach; });
+  const segs = []; for (let k=0;k<K;k++){ const es = edges.map((e,i) => [e,i]).filter(([e]) => e.seg === k);
+    const ds = seq.filter(d => segFor(d.i) === k);
+    segs.push({k, start: es.length ? es[0][1] : 0, end: es.length ? es[es.length-1][1]+1 : 0, from: k === 0 ? 0 : Math.max(0, ds[0].i-1), to: ds.length ? ds[ds.length-1].i : 0}); }
+  let cx = 0, cy = 0; seq.forEach(d => { cx += d.x; cy += d.y; }); cx /= n || 1; cy /= n || 1;
+  const ld = {les, o, paths, seq, edges, segs, n, cx, cy, r:fsz.r, f: o.count === 'math' ? fsz.f*.78 : fsz.f,
+    inner: dPath(les.inner), paints: (les.paint || []).map(([c,d]) => [c, dPath(d)])};
+  placeLabels(ld);
+  return ld;
+}
+function placeLabels(ld){
+  const {seq, edges, r, f} = ld, mc = measureCtx;
+  mc.font = `${f}px ${DISPLAY}`;
+  ld.paths.forEach((p, pi) => {
+    const ds = seq.filter(d => d.pi === pi), m = ds.length, poly = ds.map(d => [d.x, d.y]);
+    ds.forEach((d, k) => {
+      const a = (p.closed || k > 0) ? ds[(k-1+m)%m] : d, b = (p.closed || k < m-1) ? ds[(k+1)%m] : d;
+      let tx = b.x-a.x, ty = b.y-a.y; const l = Math.hypot(tx,ty);
+      let nx = 0, ny = -1; if (l > 0){ nx = ty/l; ny = -tx/l; }
+      if (p.closed && m > 2){ if (inPoly(d.x+nx*14, d.y+ny*14, poly)){ nx = -nx; ny = -ny; } }
+      else if ((d.x-ld.cx)*nx + (d.y-ld.cy)*ny < 0){ nx = -nx; ny = -ny; }
+      d.nx = nx; d.ny = ny;
+    });
+  });
+  const segsXY = edges.filter(e => !e.lift).map(e => [seq[e.a], seq[e.b]]);
+  const placed = [], OFF = [0, 28, -28, 56, -56, 90, -90, 130, -130, 180];
+  for (const d of seq){
+    const w = mc.measureText(d.label).width + f*.2, h = f*.92, base = Math.atan2(d.ny, d.nx);
+    let best = null;
+    for (const off of OFF){
+      const a = base + off*D2R, ca = Math.cos(a), sa = Math.sin(a), D = r + 5 + Math.abs(ca)*w/2 + Math.abs(sa)*h/2;
+      const x = d.x + ca*D, y = d.y + sa*D, bx0 = x-w/2, by0 = y-h/2, bx1 = x+w/2, by1 = y+h/2;
+      let pen = Math.abs(off)/200;
+      if (bx0 < 4 || by0 < 4 || bx1 > 996 || by1 > 996) pen += 30;
+      for (const q of seq){ if (q === d) continue; const qx = clamp(q.x, bx0, bx1), qy = clamp(q.y, by0, by1); if (Math.hypot(q.x-qx, q.y-qy) < r+4) pen += 12; }
+      for (const b of placed) if (bx0 < b[2]+3 && bx1 > b[0]-3 && by0 < b[3]+2 && by1 > b[1]-2) pen += 12;
+      for (const [s0, s1] of segsXY){ if (s0 === d || s1 === d) { /* 自己的線只檢查遠端 */ }
+        for (let t=.1;t<=.9;t+=.1){ const px = lerp(s0.x, s1.x, t), py = lerp(s0.y, s1.y, t); if (px > bx0-2 && px < bx1+2 && py > by0-2 && py < by1+2){ pen += 4; break; } } }
+      if (!best || pen < best.pen) best = {pen, x, y};
+      if (pen < .5) break;
+    }
+    d.lx = best.x; d.ly = best.y; d.lw = w; d.lh = h; placed.push([best.x-w/2, best.y-h/2, best.x+w/2, best.y+h/2]);
+  }
+}
+
+/* ---------- 畫學習單（0–1000 座標） ---------- */
+const PAPER = '#fffdf8', INK = '#2b2b33', START = '#2fae8c', NEWS = '#f08a24', REACH = '#ef4b4b';
+function drawStar5(c, x, y, R){ const p = starPts(x, y, R, R*.45); c.beginPath(); c.moveTo(p[0][0], p[0][1]); for (const q of p.slice(1)) c.lineTo(q[0], q[1]); c.closePath(); }
+function drawColor(c, ld){
+  c.save(); c.lineCap = 'round'; c.lineJoin = 'round';
+  for (const p of ld.paths) if (p.fill && p.closed){ c.fillStyle = p.fill; c.fill(polyPath(p.dots, true)); }
+  for (const [col, path] of ld.paints){ c.fillStyle = col; c.fill(path); }
+  for (const p of ld.paths) if (p.stroke){ c.strokeStyle = p.stroke; c.lineWidth = p.w || 14; c.stroke(polyPath(p.dots, p.closed)); }
+  c.restore();
+}
+function edgeLine(c, ld, e, t=1){ const a = ld.seq[e.a], b = ld.seq[e.b]; c.moveTo(a.x, a.y); c.lineTo(lerp(a.x, b.x, t), lerp(a.y, b.y, t)); }
+// st: appear(0–1) dim reveal paint drawn cur edgeT segHi target(index) started sheet
+function drawBoard(c, ld, st){
+  c.fillStyle = PAPER; c.fillRect(0,0,1000,1000);
+  const n = ld.n, rv = st.reveal || 0;
+  if (st.paint > 0){ c.save(); if (st.paint < 1){ c.beginPath(); c.rect(-10,-10, st.paint*1020, 1020); c.clip(); } drawColor(c, ld); c.restore(); }
+  // 已經印好的小地方
+  c.save(); c.lineCap = 'round'; c.lineJoin = 'round';
+  c.strokeStyle = rv > 0 ? `rgba(43,43,51,${.35 + .65*rv})` : '#bdb4ae'; c.lineWidth = 3 + 2*rv; c.stroke(ld.inner);
+  // 連好的線
+  const drawn = st.drawn || 0;
+  if (drawn > 0 || st.cur >= 0){
+    c.strokeStyle = rv > 0 ? `rgb(${Math.round(lerp(90,40,rv))},${Math.round(lerp(86,40,rv))},${Math.round(lerp(98,48,rv))})` : '#5a5662';
+    c.lineWidth = 5 + 3*rv; c.beginPath();
+    for (let i=0;i<drawn && i<ld.edges.length;i++){ const e = ld.edges[i]; if (!e.lift) edgeLine(c, ld, e); }
+    if (st.cur >= 0 && st.cur < ld.edges.length && !ld.edges[st.cur].lift) edgeLine(c, ld, ld.edges[st.cur], st.edgeT || 0);
+    c.stroke();
+  }
+  c.restore();
+  // 點和編號
+  const da = (1 - .78*(st.dim || 0)) * (1 - rv);
+  if (da <= .01) return;
+  const reach = st.started ? (drawn > 0 ? ld.edges[drawn-1].reach : 0) : -1;
+  const hi = st.segHi >= 0 ? ld.segs[st.segHi] : null;
+  c.save(); c.globalAlpha = da; c.textAlign = 'center'; c.textBaseline = 'middle';
+  const R = ld.r, appearN = st.appear == null ? n : st.appear*n;
+  for (const d of ld.seq){
+    if (d.i >= appearN) break;
+    const pop = st.appear == null || st.appear >= 1 ? 1 : clamp(appearN - d.i, 0, 1), k = pop < 1 ? easeOut(pop)*1.15 : 1;
+    const isReached = d.i <= reach, isStart = d.i === 0;
+    if (hi && d.i > hi.from && d.i <= hi.to && !isReached){ c.fillStyle = 'rgba(255,200,61,.45)'; c.beginPath(); c.arc(d.x, d.y, R*2.1*k, 0, 7); c.fill(); }
+    if (st.target === d.i){ const ph = st.pulse || 0; c.strokeStyle = REACH; c.lineWidth = 3.5; c.globalAlpha = da*(1-ph*.7); c.beginPath(); c.arc(d.x, d.y, R*(1.8 + ph*1.4), 0, 7); c.stroke(); c.globalAlpha = da; }
+    if (d.newStart){ drawStar5(c, d.x, d.y, R*1.75*k); c.fillStyle = isReached ? REACH : NEWS; c.fill(); c.lineWidth = 2; c.strokeStyle = '#fff'; c.stroke(); }
+    else { c.beginPath(); c.arc(d.x, d.y, R*k*(isStart ? 1.25 : 1), 0, 7);
+      c.fillStyle = isReached && !isStart ? REACH : isStart ? START : '#fff'; c.fill();
+      c.lineWidth = Math.max(2, R*.28); c.strokeStyle = isStart ? '#1d7a61' : INK; c.stroke(); }
+    // 編號
+    c.font = `${ld.f*k}px ${DISPLAY}`;
+    if (isStart || d.newStart){ c.fillStyle = isStart ? START : NEWS; c.beginPath(); c.roundRect(d.lx-d.lw/2-4, d.ly-d.lh/2-2, d.lw+8, d.lh+4, (d.lh+4)/2); c.fill(); c.fillStyle = '#fff'; }
+    else c.fillStyle = isReached ? '#9a3434' : INK;
+    c.fillText(d.label, d.lx, d.ly + ld.f*.04);
+  }
+  c.restore();
+}
+
+/* ---------- 狀態 ---------- */
+const PKEY = 'dotToDot.prefs.v1';
+const S = Object.assign({ view:'lesson', lesson:0, last:0, lstep:0, speed:'mid', count:'num', density:'std', fs:'big', seg:'10', pdfv:'cur', speak:false, tool:'dot', custom:null },
+  (() => { try { const p = JSON.parse(localStorage.getItem(PKEY)); return p && typeof p === 'object' ? {speed:p.speed, count:p.count, density:p.density, fs:p.fs, seg:p.seg, pdfv:p.pdfv, speak:!!p.speak} : {}; } catch(e){ return {}; } })());
+for (const [k, ok] of [['speed',['slow','mid','fast']],['count',Object.keys(COUNT)],['density',['sparse','std','dense']],['fs',['std','big','xl']],['seg',['5','10','20']],['pdfv',['cur','easy','hard']]]) if (!ok.includes(S[k])) S[k] = ({speed:'mid', count:'num', density:'std', fs:'big', seg:'10', pdfv:'cur'})[k];
+const savePrefs = () => { try { localStorage.setItem(PKEY, JSON.stringify({speed:S.speed, count:S.count, density:S.density, fs:S.fs, seg:S.seg, pdfv:S.pdfv, speak:S.speak})); } catch(e){} };
+let LD = null, lessonSteps = [], loadSeq = 0;
+let busy = false, animToken = 0, recording = false, caption = null, hudMsg = null;
+const V0 = () => ({appear:1, intro:0, started:false, drawn:0, cur:-1, edgeT:0, segHi:-1, target:-1, pulse:0, dim:0, shrink:0, guess:0, choices:0, reveal:0, paint:0, fin:0, pen:null});
+let V = V0();
+const stage = $('#stage'), sctx = stage.getContext('2d');
+let dpr = 1;
+const TK = {};
+function readTokens(){ const cs = getComputedStyle(document.documentElement); for (const k of ['mat','mat-line','mat-line-strong']) TK[k] = cs.getPropertyValue('--'+k).trim(); }
+const curLes = () => S.lesson < 0 ? S.custom : LESSONS[S.lesson];
+const lessonOpts = () => ({density:S.density, fs:S.fs, count:S.count, seg:S.seg});
+
+/* ---------- 舞台繪製 ---------- */
+const boardRect = () => { const t = ease(clamp(V.shrink,0,1)); return S.view === 'design' ? {x:40, y:40, s:.92} : {x:lerp(40,140,t), y:lerp(40,22,t), s:lerp(.92,.72,t)}; };
+function cam(){ const W = stage.width, H = stage.height, s = Math.min(W,H)/1000; return {s, ox:(W-1000*s)/2, oy:(H-1000*s)/2}; }
+function drawMat(ctx){
+  const W = stage.width, H = stage.height, T = cam(), step = 50*T.s;
+  ctx.setTransform(1,0,0,1,0,0); ctx.fillStyle = TK.mat || '#3f7fc4'; ctx.fillRect(0,0,W,H);
+  ctx.lineWidth = Math.max(1, dpr*.8);
+  for (let x=T.ox % step; x<W; x+=step){ ctx.strokeStyle = (Math.round((x-T.ox)/step)%4===0) ? TK['mat-line-strong'] : TK['mat-line']; ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y=T.oy % step; y<H; y+=step){ ctx.strokeStyle = (Math.round((y-T.oy)/step)%4===0) ? TK['mat-line-strong'] : TK['mat-line']; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+}
+function pill(ctx, text, x, y, size=26, bg='rgba(20,25,40,.8)', fg='#fff'){
+  ctx.save(); ctx.font = `${size}px ${DISPLAY}`; const w = ctx.measureText(text).width + size*1.2, h = size*1.7;
+  x = clamp(x, w/2+8, 992-w/2);
+  ctx.fillStyle = bg; ctx.beginPath(); ctx.roundRect(x-w/2, y-h/2, w, h, h/2); ctx.fill();
+  ctx.fillStyle = fg; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(text, x, y+size*.05); ctx.restore();
+}
+function drawPencil(ctx, x, y, lifted=0){
+  ctx.save(); ctx.translate(x, y - lifted*36); ctx.rotate(.55);
+  if (lifted > 0){ ctx.save(); ctx.rotate(-.55); ctx.fillStyle = 'rgba(0,0,0,.15)'; ctx.beginPath(); ctx.ellipse(lifted*10, lifted*36, 14, 6, 0, 0, 7); ctx.fill(); ctx.restore(); }
+  ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(-10+6, -150+6, 20, 112);
+  ctx.fillStyle = '#ffc83d'; ctx.fillRect(-10, -126, 20, 92);
+  ctx.fillStyle = '#e8a800'; ctx.fillRect(-10, -126, 6, 92);
+  ctx.fillStyle = '#c9ccd4'; ctx.fillRect(-10, -138, 20, 12);
+  ctx.fillStyle = '#ff8fb1'; ctx.beginPath(); ctx.roundRect(-10, -156, 20, 20, [6,6,0,0]); ctx.fill();
+  ctx.fillStyle = '#f5d7a8'; ctx.beginPath(); ctx.moveTo(-10,-34); ctx.lineTo(10,-34); ctx.lineTo(0,-4); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#3b3b46'; ctx.beginPath(); ctx.moveTo(-3.5,-14); ctx.lineTo(3.5,-14); ctx.lineTo(0,-2); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function drawCrayon(ctx, x, y, col){
+  ctx.save(); ctx.translate(x, y); ctx.rotate(.5);
+  ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillRect(-14+5, -120+6, 28, 100);
+  ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(-14,-30); ctx.lineTo(14,-30); ctx.lineTo(6,-4); ctx.lineTo(-6,-4); ctx.closePath(); ctx.fill();
+  ctx.fillRect(-14, -120, 28, 90); ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.fillRect(-14, -96, 28, 34);
+  ctx.restore();
+}
+function choiceList(les){ if (!les.choices) return null; const r = RNG(hash(les.name)+3), a = les.choices.slice(); for (let i=a.length-1;i>0;i--){ const j = Math.floor(r()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
+function drawConfetti(ctx, b, t){
+  const bs = 1000*b.s, rng = RNG(7);
+  for (let i=0;i<16;i++){ const a = rng()*6.283, d = bs*.5 + 10 + rng()*50, x = b.x+bs/2 + Math.cos(a)*d, y = b.y+bs/2 + Math.sin(a)*d*.95;
+    const ph = clamp(t*2 - i/16, 0, 1); if (ph <= 0) continue; const s = (9 + rng()*13) * Math.sin(ph*Math.PI*.5+.2);
+    ctx.fillStyle = ['#ffe27a','#ffffff','#ffc83d','#ff8fb1'][i%4]; const sp = starPts(x,y,s,s*.4,4,0);
+    ctx.beginPath(); ctx.moveTo(sp[0][0], sp[0][1]); for (const q of sp.slice(1)) ctx.lineTo(q[0], q[1]); ctx.closePath(); ctx.fill(); }
+}
+function render(){
+  rq = false;
+  const ctx = sctx, T = cam(); drawMat(ctx);
+  ctx.setTransform(T.s,0,0,T.s,T.ox,T.oy);
+  const b = boardRect(), bs = 1000*b.s;
+  ctx.fillStyle='rgba(0,0,0,.2)'; ctx.fillRect(b.x+6, b.y+8, bs, bs);
+  if (S.view === 'design'){ drawEdit(ctx, b); drawCaption(ctx); return; }
+  if (!LD){ ctx.fillStyle = PAPER; ctx.fillRect(b.x,b.y,bs,bs); drawCaption(ctx); return; }
+  ctx.save(); ctx.translate(b.x, b.y); ctx.scale(b.s, b.s); ctx.beginPath(); ctx.rect(0,0,1000,1000); ctx.clip();
+  drawBoard(ctx, LD, {appear:V.appear, dim:V.dim, reveal:V.reveal, paint:V.paint, drawn:V.drawn, cur:V.cur, edgeT:V.edgeT, segHi:V.segHi, target:V.target, pulse:V.pulse, started:V.started});
+  ctx.restore();
+  const toS = (x,y) => [b.x + x*b.s, b.y + y*b.s];
+  // 起點介紹
+  if (V.intro > 0 && V.intro < 2 && LD.n){ const d = LD.seq[0], [x,y] = toS(d.x, d.y), up = y > 260;
+    ctx.save(); ctx.globalAlpha = clamp(V.intro*2,0,1); pill(ctx, `起點 ${d.label} 在這裡！`, x, up ? y - 70 : y + 70, 30, START); ctx.restore(); }
+  // 筆
+  if (V.pen){ const [x,y] = toS(V.pen.x, V.pen.y); drawPencil(ctx, x, y, V.pen.lift || 0); }
+  // 猜猜看
+  if (V.guess > 0){
+    const g = easeOut(clamp(V.guess,0,1)), x = 70, y = 110 - (1-g)*60;
+    ctx.save(); ctx.globalAlpha = g*(1-V.reveal); ctx.fillStyle = '#ffc83d'; ctx.beginPath(); ctx.arc(x, y, 56, 0, 7); ctx.fill();
+    ctx.fillStyle = '#2c2f3b'; ctx.font = `70px ${DISPLAY}`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('？', x, y+4); ctx.restore();
+    const ch = choiceList(curLes());
+    if (ch && V.choices > 0){ ch.forEach((t, j) => { const a = easeOut(clamp(V.choices*3 - j, 0, 1)); if (a <= 0) return;
+      const right = t === curLes().name, x = 500 + (j-1)*300, y = 850 + (1-a)*40;
+      ctx.save(); ctx.globalAlpha = a * (right ? 1 : 1 - .65*V.reveal);
+      const bg = right && V.reveal > .3 ? START : 'rgba(255,255,255,.95)', fg = right && V.reveal > .3 ? '#fff' : '#2c2f3b';
+      pill(ctx, (right && V.reveal > .3 ? '✓ ' : `${'ABC'[j]}. `) + t, x, y, 34, bg, fg); ctx.restore(); }); }
+    else if (!ch && V.choices > 0){ ctx.save(); ctx.globalAlpha = clamp(V.choices,0,1)*(1-V.reveal); pill(ctx, '你覺得像什麼？', 500, 850, 34, 'rgba(255,255,255,.95)', '#2c2f3b'); ctx.restore(); }
+  }
+  if (V.reveal > 0){ const a = easeOut(clamp(V.reveal*1.4,0,1));
+    ctx.save(); ctx.globalAlpha = a; pill(ctx, `是「${curLes().name}」！`, 500, 62 + (1-a)*30, 40, REACH); ctx.restore();
+    drawConfetti(ctx, b, clamp(V.reveal,0,1)); }
+  if (V.paint > 0 && V.paint < 1){ const cols = [...LD.paths.map(p => p.fill || p.stroke), ...LD.paints.map(p => p[0])].filter(Boolean);
+    const col = cols[Math.floor(V.paint*cols.length*2) % (cols.length||1)] || '#ef4b4b';
+    const [x,y] = toS(V.paint*1000, 500 + Math.sin(V.paint*40)*260); drawCrayon(ctx, x, y, col); }
+  if (V.fin > 0){ ctx.save(); ctx.globalAlpha = clamp(V.fin*1.6,0,1); pill(ctx, '完成！塗上喜歡的顏色', 500, 850 + 40*(1-easeOut(clamp(V.fin*1.4,0,1))), 36, REACH); ctx.restore(); }
+  drawCaption(ctx);
+}
+let rq = false;
+function requestRender(){ if (!rq){ rq = true; requestAnimationFrame(render); } }
+function wrapText(ctx, text, maxW){ const lines=[]; let line='';
+  for (const ch of text){ if (ctx.measureText(line+ch).width > maxW && line){ lines.push(line); line=ch; } else line+=ch; }
+  if (line) lines.push(line); return lines; }
+function drawCaption(ctx){
+  if (!caption) return;
+  const W = stage.width, pad = 22*dpr;
+  ctx.save(); ctx.setTransform(1,0,0,1,0,0);
+  ctx.font = `400 ${20*dpr}px ${FONT}`;
+  const lines = wrapText(ctx, caption.text, W-2*pad);
+  const bh = pad*1.6 + 34*dpr + lines.length*30*dpr;
+  ctx.fillStyle='rgba(15,20,35,.76)'; ctx.fillRect(0,0,W,bh);
+  ctx.fillStyle='#ffe27a'; ctx.font = `${28*dpr}px ${DISPLAY}`; ctx.textBaseline='top';
+  ctx.fillText(caption.title, pad, pad*.8);
+  ctx.fillStyle='#fff'; ctx.font = `400 ${20*dpr}px ${FONT}`;
+  lines.forEach((l,i)=>ctx.fillText(l, pad, pad*.8+40*dpr+i*30*dpr));
+  ctx.fillStyle='rgba(255,255,255,.8)'; ctx.font = `500 ${15*dpr}px ${FONT}`; ctx.textAlign='right';
+  ctx.fillText(caption.corner || '', W-pad, pad*.8+6*dpr);
+  ctx.restore();
+}
+
+/* ---------- 動畫 ---------- */
+const spd = () => ({slow:1.6, mid:1, fast:.55})[S.speed] * (reduced ? .15 : 1);
+function tween(ms, fn, tok){
+  return new Promise(res => {
+    const t0 = performance.now(), dur = Math.max(1, ms);
+    const f = now => { if (tok !== animToken){ res(false); return; }
+      const t = Math.min(1,(now-t0)/dur); fn(t); render(); if (t<1) requestAnimationFrame(f); else res(true); };
+    requestAnimationFrame(f);
+  });
+}
+const wait = (ms, tok) => tween(ms*spd(), t => { V.pulse = (t*ms*spd()/700) % 1; }, tok);
+function cancelAnim(){ animToken++; busy = false; hudMsg = null; try { speechSynthesis.cancel(); } catch(e){} }
+function say(text){ if (!S.speak || recording || !window.speechSynthesis || !text) return;
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'zh-TW'; u.rate = .95; speechSynthesis.speak(u); } catch(e){} }
+
+/* ---------- 教案步驟 ---------- */
+function buildSteps(ld){
+  const les = ld.les, n = ld.n, L = i => ld.seq[i].label, M = COUNT[ld.o.count], multi = ld.paths.length > 1;
+  const introText = ld.o.count === 'down' ? `接著倒過來數：${L(0)}、${L(1)}、${L(2)}… 一路數到 1` : M.intro;
+  const steps = [{type:'start', title:'找到起點',
+    text:`準備鉛筆或粗一點的彩色筆。先找到綠色的「${L(0)}」，那是起點，${introText}。這一課共有 ${n} 個點${multi ? `，分成 ${ld.paths.length} 筆：看到橘色星星 ★ 的點，就把筆拿起來，從那裡重新開始` : ''}。`,
+    tip: ld.o.count === 'math' ? '先一起算第一題，確定大家懂「答案就是下一點」，再開始連。' : '先用手指點著起點，大聲說出來，再開始畫。'}];
+  const TIPS = ['可以先用手指點著數，確定了再用筆畫。', '畫錯沒關係，換一枝顏色的筆，從對的點繼續就好。', '線不用很直，有連到點上就很棒。', '眼睛從上一個點的附近開始找，一圈一圈往外看。'];
+  ld.segs.forEach((g, k) => {
+    const es = ld.edges.slice(g.start, g.end), extra = [];
+    for (const e of es){ if (e.lift) extra.push(`連到 ${L(e.a)} 以後，把筆拿起來，從 ★ ${L(e.b)} 重新開始。`);
+      if (e.close) extra.push(`連到 ${L(e.a)} 後，再畫回這一筆的起點 ${L(e.b)}，形狀就合起來了。`); }
+    const last = k === ld.segs.length-1;
+    steps.push({type:'seg', k, title:`連 ${L(g.from)} → ${L(g.to)}`,
+      text:`從 ${L(g.from)} 連到 ${L(g.to)}。眼睛先找到下一個${M.unit}，再用筆慢慢畫直線過去。${extra.join('')}`,
+      tip: k === 0 ? '每一段畫完先停下來，等大家都跟上了再按「下一步」。' : last ? '最後一段了！連完先別說答案，等一下一起猜。' : g.to > 0 ? `卡住時給線索：「下一個是 ${L(Math.min(g.from+1, n-1))}，在 ${L(g.from)} 的附近找找看。」` : TIPS[k % TIPS.length]});
+  });
+  steps.push({type:'guess', title:'猜猜看', text:`把筆放下，看看連出來的線條，猜猜看這是什麼？${les.hint ? `提示：${les.hint}。` : ''}`,
+    tip: les.choices ? '先讓大家自由說，再看三個選項。猜錯了也沒關係，問問「為什麼覺得像？」' : '請作者先不要說，讓大家猜一猜。'});
+  steps.push({type:'reveal', title:'揭曉答案', text:`答案是「${les.name}」！${les.talk || '說說看，你猜對了嗎？'}`, tip:'連完的線條一筆一筆描粗一點，圖案會更清楚。'});
+  steps.push({type:'paint', title:'塗上顏色', text:'拿出彩色筆或蠟筆，把它塗上喜歡的顏色。不一定要照示範，想塗什麼顏色都可以。最後寫上名字和日期！',
+    tip:'手比較沒力的學員，可以用粗蠟筆或加上筆套；塗色不用塗滿，塗在線裡面就很棒。'});
+  return steps;
+}
+function applyFinal(s){
+  if (s.type === 'start'){ V.appear = 1; V.intro = 0; V.target = 0; V.pen = null; }
+  else if (s.type === 'seg'){ const g = LD.segs[s.k]; V.started = true; V.drawn = g.end; V.cur = -1; V.target = -1; V.segHi = -1; V.pen = LD.edges.length ? penAt(LD.edges[g.end-1].b) : penAt(0); }
+  else if (s.type === 'guess'){ V.pen = null; V.dim = 1; V.shrink = 1; V.guess = 1; V.choices = 1; }
+  else if (s.type === 'reveal'){ V.reveal = 1; }
+  else if (s.type === 'paint'){ V.paint = 1; V.fin = 1; }
+}
+const penAt = i => { const d = LD.seq[i]; return d ? {x:d.x, y:d.y, lift:0} : null; };
+function setStateBefore(i){ V = V0(); V.appear = 0; for (let j=0;j<i;j++) applyFinal(lessonSteps[j]); if (i > 0) V.appear = 1; }
+async function animStep(s, tok){
+  if (s.type === 'start'){
+    V.appear = 0; V.pen = null;
+    if (!await tween(clamp(LD.n*45, 700, 1800)*spd(), t => V.appear = t, tok)) return false;
+    V.appear = 1; V.target = 0; const d = LD.seq[0];
+    if (!await tween(1000*spd(), t => { const e = ease(t); V.intro = t; V.pen = {x:lerp(980, d.x, e), y:lerp(1000, d.y, e), lift:1-e}; V.pulse = (t*2) % 1; }, tok)) return false;
+    say(d.say); V.intro = 1;
+    if (!await wait(1400, tok)) return false; V.pen = null; return true;
+  }
+  if (s.type === 'seg'){
+    const g = LD.segs[s.k]; V.started = true; V.segHi = s.k; V.drawn = g.start;
+    for (let i=g.start;i<g.end;i++){
+      const e = LD.edges[i], a = LD.seq[e.a], b = LD.seq[e.b]; V.cur = i; V.target = e.close ? -1 : e.b;
+      const len = Math.hypot(b.x-a.x, b.y-a.y);
+      if (e.lift){ if (!await tween(1100*spd(), t => { const k = ease(t); V.edgeT = k; V.pen = {x:lerp(a.x,b.x,k), y:lerp(a.y,b.y,k), lift:Math.sin(t*Math.PI)}; V.pulse = (t*2)%1; }, tok)) return false; }
+      else if (!await tween(clamp(280 + len*1.5, 380, 1100)*spd(), t => { V.edgeT = t; V.pen = {x:lerp(a.x,b.x,t), y:lerp(a.y,b.y,t), lift:0}; V.pulse = (t*1.5)%1; }, tok)) return false;
+      V.drawn = i+1; V.cur = -1; V.edgeT = 0; V.pen = penAt(e.b); if (!e.close) say(b.say);
+      if (!await wait(e.lift ? 300 : 120, tok)) return false;
+    }
+    V.target = -1; V.segHi = -1; render(); return wait(500, tok);
+  }
+  if (s.type === 'guess'){
+    V.pen = null;
+    if (!await tween(900*spd(), t => { V.dim = t; V.shrink = t; V.guess = t; }, tok)) return false;
+    if (!await wait(700, tok)) return false;
+    return tween(1300*spd(), t => V.choices = t, tok);
+  }
+  if (s.type === 'reveal'){ say(`是${curLes().name}`); return tween(1700*spd(), t => V.reveal = t, tok); }
+  if (s.type === 'paint'){ if (!await tween(2600*spd(), t => V.paint = t, tok)) return false; return tween(900*spd(), t => V.fin = t, tok); }
+  return true;
+}
+async function runLessonStep(i){
+  if (!LD || i < 0 || i >= lessonSteps.length) return;
+  cancelAnim(); caption = null; S.lstep = i; const tok = ++animToken;
+  setStateBefore(i); busy = true; updateUI(); render();
+  await animStep(lessonSteps[i], tok);
+  if (tok === animToken){ busy = false; updateUI(); render(); }
+}
+function stepCaption(i){ const s = lessonSteps[i], les = curLes();
+  return {title:`${i+1}. ${s.title}`, text:s.text, corner: S.lesson < 0 ? '連點成畫・自己設計' : `連點成畫・第 ${S.lesson+1} 課`}; }
+async function playAll(tok, withCaption){
+  for (let i=0;i<lessonSteps.length;i++){
+    S.lstep = i; setStateBefore(i); if (withCaption) caption = stepCaption(i); updateUI();
+    if (!await animStep(lessonSteps[i], tok)) return false;
+    if (!await wait(900, tok)) return false;
+  }
+  return true;
+}
+async function loadLesson(idx, autoRun=true, keepStep=0){
+  const seq = ++loadSeq; cancelAnim(); caption = null; S.lesson = idx; if (idx >= 0) S.last = idx;
+  LD = null; lessonSteps = []; hudMsg = '準備學習單中…'; updateUI(); render();
+  const ld = await buildLesson(curLes(), lessonOpts());
+  if (seq !== loadSeq) return;
+  LD = ld; lessonSteps = buildSteps(ld); renderStepList(); hudMsg = null;
+  S.lstep = clamp(keepStep, 0, lessonSteps.length-1);
+  setStateBefore(S.lstep);
+  if (!autoRun) applyFinal(lessonSteps[S.lstep]);
+  if (S.count === 'abc' && ld.n > 26 || S.count === 'zhu' && ld.n > 37) toast(`這課有 ${ld.n} 個點，${S.count === 'abc' ? '字母' : '注音'}用完會接著用兩個字（如 ${S.count === 'abc' ? 'AA、AB' : 'ㄅㄅ、ㄅㄆ'}）；可以改選「疏」`);
+  updateUI(); render(); updateA4Preview();
+  if (autoRun) runLessonStep(S.lstep);
+}
+
+/* ---------- 自己設計 ---------- */
+const DKEY = 'dotToDot.design.v1', IKEY = 'dotToDot.designImg.v1';
+const DCOLORS = ['#ef5a6f','#f28a2e','#f6c636','#7cc35a','#38c1a0','#58a8f0','#9b6cf0','#f390b5','#8d5b3b','#9aa0ad'];
+function sampleDesign(){ return {paths:[{dots:[[500,160],[560,290],[620,420],[690,590],[595,590],[500,590],[500,375]], closed:true}, {dots:[[230,650],[500,650],[770,650],[680,800],[500,800],[320,800]], closed:true}], name:'小帆船', color:'#58a8f0'}; }
+function loadDesign(){ try { const d = JSON.parse(localStorage.getItem(DKEY)); if (d && Array.isArray(d.paths)) return d; } catch(e){} return null; }
+let DS = loadDesign() || sampleDesign();
+let DIMG = null; try { const s = localStorage.getItem(IKEY); if (s){ DIMG = new Image(); DIMG.src = s; DIMG.onload = () => render(); } } catch(e){}
+function saveDesign(){ try { localStorage.setItem(DKEY, JSON.stringify({paths:DS.paths, name:DS.name, color:DS.color})); } catch(e){} }
+const hist = [], redoStack = [];
+const snap = () => JSON.stringify(DS.paths);
+function pushHist(){ hist.push(snap()); if (hist.length > 80) hist.shift(); redoStack.length = 0; }
+const curPath = () => { if (!DS.paths.length) DS.paths.push({dots:[], closed:false}); return DS.paths[DS.paths.length-1]; };
+let drag = null, stroke = null, hoverPt = null;
+function customLesson(){
+  const paths = DS.paths.filter(p => p.dots.length >= 2).map(p => { const closed = p.closed && p.dots.length >= 3; return {dots:p.dots, closed, fill: closed ? DS.color : null, stroke: closed ? null : DS.color, w:16}; });
+  const name = ($('#dName').value || '').trim() || '我的設計';
+  return {name, level:0, theme:'自己設計', paths, custom:true, hint:'', choices:null, talk:'說說看，你猜對了嗎？'};
+}
+function drawEdit(ctx, b){
+  const bs = 1000*b.s;
+  ctx.fillStyle = PAPER; ctx.fillRect(b.x, b.y, bs, bs);
+  if (DIMG && DIMG.complete && DIMG.naturalWidth){ const k = Math.min(bs/DIMG.naturalWidth, bs/DIMG.naturalHeight), w = DIMG.naturalWidth*k, h = DIMG.naturalHeight*k;
+    ctx.save(); ctx.globalAlpha = .35; ctx.drawImage(DIMG, b.x+(bs-w)/2, b.y+(bs-h)/2, w, h); ctx.restore(); }
+  ctx.save(); ctx.translate(b.x, b.y); ctx.scale(b.s, b.s);
+  let idx = 0; const last = DS.paths.length-1;
+  DS.paths.forEach((p, pi) => {
+    if (p.dots.length > 1){ ctx.save(); ctx.strokeStyle = pi === last ? 'rgba(239,75,75,.55)' : 'rgba(90,86,98,.45)'; ctx.lineWidth = 4; ctx.setLineDash([12,9]); ctx.lineCap = 'round';
+      ctx.stroke(polyPath(p.dots, p.closed && p.dots.length > 2)); ctx.restore(); }
+    p.dots.forEach((d, k) => { const start = idx === 0, ns = k === 0 && pi > 0;
+      if (ns){ drawStar5(ctx, d[0], d[1], 17); ctx.fillStyle = NEWS; ctx.fill(); }
+      else { ctx.beginPath(); ctx.arc(d[0], d[1], start ? 12 : 9, 0, 7); ctx.fillStyle = start ? START : pi === last ? REACH : '#fff'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = INK; ctx.stroke(); }
+      ctx.fillStyle = INK; ctx.font = `28px ${DISPLAY}`; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; ctx.fillText(String(idx+1), d[0]+10, d[1]-6); idx++; });
+  });
+  if (stroke && stroke.length > 1){ ctx.strokeStyle = REACH; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke(polyPath(stroke, false)); }
+  if (hoverPt && S.tool !== 'draw'){ const near = nearestDot(hoverPt); ctx.beginPath();
+    if (near){ ctx.arc(near.d[0], near.d[1], 20, 0, 7); ctx.strokeStyle = S.tool === 'erase' ? REACH : '#1f6feb'; ctx.lineWidth = 3; ctx.stroke(); }
+    else if (S.tool === 'dot'){ ctx.arc(hoverPt[0], hoverPt[1], 9, 0, 7); ctx.fillStyle = 'rgba(239,75,75,.35)'; ctx.fill(); } }
+  if (!DS.paths.some(p => p.dots.length)){ ctx.fillStyle = '#9a93a0'; ctx.font = `34px ${DISPLAY}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('在這裡點一下，放第一個點', 500, 500); }
+  ctx.restore();
+}
+function toArt(e){
+  const r = stage.getBoundingClientRect(), T = cam(), b = boardRect();
+  const lx = ((e.clientX - r.left)*dpr - T.ox)/T.s, ly = ((e.clientY - r.top)*dpr - T.oy)/T.s;
+  return [(lx - b.x)/b.s, (ly - b.y)/b.s];
+}
+function nearestDot(pt){ let best = null; DS.paths.forEach((p, pi) => p.dots.forEach((d, k) => { const dd = dist(d, pt); if (dd < 24 && (!best || dd < best.dd)) best = {pi, k, d, dd}; })); return best; }
+function designChanged(){ saveDesign(); updateDesignStat(); updateDesignA4(); }
+function updateDesignStat(){
+  const n = DS.paths.reduce((s,p) => s + p.dots.length, 0), strokes = DS.paths.filter(p => p.dots.length).length;
+  $('#dStat').innerHTML = `<span class="chip">${n} 個點</span><span class="chip">${strokes} 筆</span>`;
+}
+function strokeToDots(pts){
+  let len = 0; for (let i=1;i<pts.length;i++) len += dist(pts[i-1], pts[i]);
+  if (len < 40) return null;
+  const closed = pts.length > 8 && dist(pts[0], pts[pts.length-1]) < 60, src = closed ? pts.slice(0,-1) : pts;
+  const simp = [src[0]]; for (const p of src) if (dist(p, simp[simp.length-1]) >= 8) simp.push(p);
+  if (simp.length < 2) return null;
+  const raw = [{pts:simp, closed, cs:corners(simp, closed)}];
+  const N = Math.max(raw[0].cs.length, Math.round(len/75));
+  return {dots:resample(raw, N)[0].map(d => [Math.round(d[0]), Math.round(d[1])]), closed};
+}
+
+/* ---------- 下載 ---------- */
+const dlReady = (window.claude && typeof window.claude.use === 'function') ? window.claude.use('downloads').catch(()=>null) : Promise.resolve(null);
+async function saveFile(name, blob){
+  const dl = await dlReady;
+  if (dl){
+    try { await dl.save({filename:name, data:blob}); toast('已存檔：'+name); }
+    catch(e){ if (e && e.code === 'declined') return; toast('這個畫面無法存檔，請改用瀏覽器開啟這頁再試'); }
+    return;
+  }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 4000); toast('已下載：'+name);
+}
+/* ---------- A4 學習單（200 dpi） ---------- */
+const MM = 200/25.4, CUTE = ['#ef4b4b','#ffc83d','#38c1a0','#58a8f0','#9b6cf0','#ff8fb1'];
+function bunting(c, Wd, h){ const bw = 12*MM; for (let i=0;i*bw<Wd;i++){ c.fillStyle = CUTE[i%CUTE.length]; c.beginPath(); c.moveTo(i*bw+MM,0); c.lineTo(i*bw+bw-MM,0); c.lineTo(i*bw+bw/2,h); c.closePath(); c.fill(); } }
+function roundRect(c, x, y, w, h, r, fill, stroke){ c.beginPath(); c.roundRect(x,y,w,h,r); if (fill){ c.fillStyle=fill; c.fill(); } if (stroke){ c.strokeStyle=stroke; c.stroke(); } }
+function pdfOpts(){ const o = lessonOpts(); if (S.pdfv === 'easy') Object.assign(o, {density:'sparse', fs:'xl'}); if (S.pdfv === 'hard') Object.assign(o, {density:'dense', fs:'std'}); return o; }
+async function makeSheet(les, no, o){
+  await fontsReady();
+  const ld = await buildLesson(les, o), n = ld.n;
+  const Wd = Math.round(210*MM), Hd = Math.round(297*MM), cv = mk(Wd,Hd), c = cv.getContext('2d');
+  c.fillStyle='#fff'; c.fillRect(0,0,Wd,Hd);
+  bunting(c, Wd, 8*MM);
+  c.textBaseline='alphabetic';
+  c.font = `${5.4*MM}px ${DISPLAY}`;
+  const tag = no ? `第 ${no} 課` : '自己設計', tw = c.measureText(tag).width + 6*MM;
+  c.save(); c.translate(15*MM, 14*MM); c.rotate(-.04); roundRect(c, 0, 0, tw, 9*MM, 4.5*MM, '#ffc83d'); c.fillStyle='#2c2f3b'; c.fillText(tag, 3*MM, 6.6*MM); c.restore();
+  c.fillStyle='#2c2f3b'; c.font = `${10*MM}px ${DISPLAY}`; c.fillText('連連看，猜猜我是誰？', 15*MM+tw+4*MM, 23*MM);
+  if (les.level){ c.font = `${6*MM}px ${DISPLAY}`; c.fillStyle='#f2a900'; c.textAlign='right'; c.fillText(stars(les.level), 195*MM, 22*MM); c.textAlign='left'; }
+  c.font = `500 ${3.9*MM}px ${FONT}`; c.fillStyle='#5f6680';
+  const L = i => ld.seq[i].label;
+  c.fillText(`${n} 個點・${COUNT[o.count].name}：${o.count === 'math' ? `答案 1 → ${n}` : `${L(0)} → ${L(n-1)}`}・${les.custom ? '' : DENS_N[o.density]+'・'}${FS[o.fs].n}字`, 15*MM, 31*MM);
+  c.textAlign='right'; c.fillStyle='#ef4b4b'; c.fillText('列印選「實際大小 100%」', 195*MM, 31*MM); c.textAlign='left';
+  // 學習單本體
+  const bx = 15*MM, by = 35*MM, bsz = 180*MM, s = bsz/1000;
+  c.save(); c.translate(bx, by); c.scale(s, s); drawBoard(c, ld, {appear:1, started:false, drawn:0, cur:-1, segHi:-1, target:-1}); c.restore();
+  c.save(); c.strokeStyle='#cfd6e2'; c.lineWidth=.35*MM; c.setLineDash([2*MM, 1.5*MM]); c.strokeRect(bx, by, bsz, bsz); c.restore();
+  // 下方說明
+  let y = 223*MM;
+  const steps = [`從綠色的起點「${L(0)}」開始，${o.count === 'math' ? '算出每一題的答案，照答案 2、3、4… 的順序' : o.count === 'down' ? '倒過來數' : o.count === 'skip' ? '兩個兩個跳著數' : '照順序'}一個一個連。`,
+    ld.paths.length > 1 ? '看到橘色 ★ 的點，把筆拿起來，從那裡重新開始。' : '連到最後一點，再連回起點，形狀就合起來了。',
+    '連完猜猜看是什麼，寫在右邊，再塗上喜歡的顏色。'];
+  steps.forEach((t, i) => {
+    c.fillStyle = CUTE[i]; c.beginPath(); c.arc(18*MM, y-1.4*MM, 3*MM, 0, 7); c.fill();
+    c.fillStyle='#fff'; c.font = `${3.8*MM}px ${DISPLAY}`; c.textAlign='center'; c.fillText(String(i+1), 18*MM, y); c.textAlign='left';
+    c.fillStyle='#2c2f3b'; c.font = `500 ${3.7*MM}px ${FONT}`; wrapText(c, t, 100*MM).forEach((l, j) => c.fillText(l, 23.5*MM, y + j*4.8*MM)); y += 10.5*MM; });
+  if (les.hint){ c.fillStyle='#5f6680'; c.font = `500 ${3.5*MM}px ${FONT}`; c.fillText('提示：'+les.hint, 15*MM, y+1*MM); }
+  // 右邊：猜猜看＋姓名
+  const px = 128*MM, py = 217*MM, pw = 67*MM;
+  roundRect(c, px, py, pw, 46*MM, 4*MM, '#eef6ff', '#d4e0f0');
+  c.fillStyle='#2c2f3b'; c.font = `${4.4*MM}px ${DISPLAY}`; c.fillText('我猜這是：', px+4*MM, py+9*MM);
+  c.strokeStyle='#9aa3b5'; c.lineWidth=.3*MM; c.beginPath(); c.moveTo(px+4*MM, py+19*MM); c.lineTo(px+pw-4*MM, py+19*MM); c.stroke();
+  c.font = `500 ${3.7*MM}px ${FONT}`; c.fillText('姓名', px+4*MM, py+30*MM); c.fillText('日期', px+4*MM, py+40*MM);
+  c.beginPath(); c.moveTo(px+14*MM, py+31*MM); c.lineTo(px+pw-4*MM, py+31*MM); c.moveTo(px+14*MM, py+41*MM); c.lineTo(px+pw-4*MM, py+41*MM); c.stroke();
+  // 答案倒著印
+  c.save(); c.translate(195*MM, 280*MM); c.rotate(Math.PI); c.fillStyle='#b5bccb'; c.font = `500 ${3.4*MM}px ${FONT}`; c.fillText(`答案：${les.name}`, 0, 0); c.restore();
+  c.fillStyle='#a3abbd'; c.font = `500 ${3.4*MM}px ${FONT}`; c.fillText('連點成畫', 15*MM, 291*MM);
+  return cv;
+}
+function finalArt(ld, res){ const cv = mk(res), c = cv.getContext('2d'); c.scale(res/1000, res/1000); drawBoard(c, ld, {appear:1, drawn:ld.edges.length, cur:-1, reveal:1, paint:1, segHi:-1, target:-1}); return cv; }
+async function makeCover(o){
+  await fontsReady(); await thumbsReady;
+  const Wd = Math.round(210*MM), Hd = Math.round(297*MM), cv = mk(Wd,Hd), c = cv.getContext('2d');
+  c.fillStyle='#eef6ff'; c.fillRect(0,0,Wd,Hd);
+  c.fillStyle='#d3e5fb'; for (let x=5*MM;x<Wd;x+=7*MM) for (let y=16*MM;y<Hd;y+=7*MM){ c.beginPath(); c.arc(x,y,.55*MM,0,7); c.fill(); }
+  bunting(c, Wd, 10*MM);
+  c.font = `${16*MM}px ${DISPLAY}`; c.textBaseline='alphabetic';
+  let x = 18*MM; [...'連點成畫'].forEach((ch,i)=>{ c.save(); c.translate(x, 40*MM); c.rotate([-.06,.04,-.03,.05][i]); c.fillStyle = CUTE[i]; c.fillText(ch,0,0); c.restore(); x += c.measureText(ch).width + 1*MM; });
+  c.fillStyle='#2c2f3b'; c.font = `${8*MM}px ${DISPLAY}`; c.fillText('12 課 A4 學習單', 18*MM, 54*MM);
+  c.font = `500 ${4*MM}px ${FONT}`; c.fillStyle='#5f6680';
+  [`玩法：${COUNT[o.count].name}・點數 ${DENS_N[o.density]}・${FS[o.fs].n}字。從綠色起點開始，照順序一點一點連起來。`,'列印時選「實際大小 100%」；準備鉛筆或粗彩色筆、蠟筆。這一頁是給帶領者的目錄（有答案）。'].forEach((t,i)=>c.fillText(t, 18*MM, 64*MM+i*6*MM));
+  const imgs = $$('.card img'), cw = 41*MM, ch = 51*MM, gx = 18*MM, gy = 77*MM, gap = 2.5*MM;
+  LESSONS.forEach((les, i) => {
+    const col = i%4, row = Math.floor(i/4), X = gx+col*(cw+gap), Y = gy+row*(ch+gap);
+    roundRect(c, X, Y, cw, ch, 4*MM, '#fff', '#d4e0f0');
+    roundRect(c, X+2*MM, Y+2*MM, cw-4*MM, cw-6*MM, 3*MM, '#3f7fc4');
+    const im = (cw-12*MM); if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth) c.drawImage(imgs[i], X+6*MM, Y+4*MM, im, im);
+    c.fillStyle='#2c2f3b'; c.font = `${4.6*MM}px ${DISPLAY}`; c.fillText(`${i+1}. ${les.name}`, X+3*MM, Y+cw+2.5*MM);
+    c.fillStyle='#f2a900'; c.font = `${3.4*MM}px ${DISPLAY}`; c.fillText(stars(les.level), X+3*MM, Y+cw+8*MM);
+    c.fillStyle='#5f6680'; c.font = `500 ${3.2*MM}px ${FONT}`; c.textAlign='right'; c.fillText(`${les.n[DENS_I[o.density]]} 點`, X+cw-3*MM, Y+cw+8*MM); c.textAlign='left';
+  });
+  c.fillStyle='#2c2f3b'; c.font = `${4.6*MM}px ${DISPLAY}`; c.fillText('給帶領者', 18*MM, 248*MM);
+  c.font = `500 ${3.7*MM}px ${FONT}`; c.fillStyle='#4a5068';
+  ['練注意力、數序、視覺搜尋和手眼協調。一段一段來：每連 10 點停一下，等大家跟上再繼續。','卡住時給線索不給答案：「下一個是 7，在 6 的附近找找看。」連完先猜再揭曉，聊聊相關的回憶。','★ 1–4 課 10–20 點；★★ 5–8 課 20–40 點、有兩筆畫；★★★ 9–12 課 40–80 點，可分兩次完成。'].forEach((t,i) =>
+    wrapText(c, t, 174*MM).forEach((l,j) => c.fillText(l, 18*MM, 256*MM + i*9*MM + j*4.8*MM)));
+  c.fillStyle='#a3abbd'; c.font = `500 ${3.5*MM}px ${FONT}`; c.textAlign='right'; c.fillText('連點成畫', 192*MM, 292*MM);
+  return cv;
+}
+let pdfBusy = false;
+async function buildPdf(list, withCover, name){
+  if (pdfBusy){ toast('PDF 還在製作中，請稍等'); return; }
+  if (!window.jspdf){ toast('PDF 工具還在載入，請稍等幾秒再按一次'); return; }
+  pdfBusy = true;
+  try {
+    const o = pdfOpts(), pdf = new window.jspdf.jsPDF({unit:'mm', format:'a4', compress:true}); let first = true;
+    const add = cv => { if (!first) pdf.addPage(); first = false; pdf.addImage(cv.toDataURL('image/jpeg', .92), 'JPEG', 0, 0, 210, 297); };
+    if (withCover){ toast('製作封面中…'); add(await makeCover(o)); }
+    for (let i=0;i<list.length;i++){
+      if (list.length > 1) toast(`製作中 ${i+1} / ${list.length}…`);
+      add(await makeSheet(list[i].les, list[i].no, o)); await new Promise(r => setTimeout(r, 0));
+    }
+    await saveFile(name, pdf.output('blob'));
+  } catch(e){ console.error(e); toast('PDF 做不出來，請重新整理頁面再試一次'); }
+  pdfBusy = false;
+}
+let a4Seq = 0;
+async function updateA4Preview(){
+  const seq = ++a4Seq; await new Promise(r => setTimeout(r, 350)); if (seq !== a4Seq || !LD) return;
+  const cv = await makeSheet(curLes(), S.lesson < 0 ? 0 : S.lesson+1, pdfOpts());
+  if (seq === a4Seq) $('#a4img').src = cv.toDataURL('image/jpeg', .8);
+}
+let dA4Seq = 0;
+async function updateDesignA4(){ const seq = ++dA4Seq; await new Promise(r => setTimeout(r, 500)); if (seq !== dA4Seq || S.view !== 'design') return;
+  const les = customLesson(); if (!les.paths.length){ $('#dA4img').removeAttribute('src'); return; }
+  const cv = await makeSheet(les, 0, pdfOpts()); if (seq === dA4Seq) $('#dA4img').src = cv.toDataURL('image/jpeg', .8); }
+async function recordWith(runner, name){
+  if (!window.MediaRecorder || !stage.captureStream){ toast('這個瀏覽器不支援錄影，請改用 Chrome 或 Safari'); return; }
+  const types = ['video/mp4;codecs=avc1','video/mp4','video/webm;codecs=vp9','video/webm'];
+  const mime = types.find(t => MediaRecorder.isTypeSupported(t)); if (!mime){ toast('這個瀏覽器不支援錄影'); return; }
+  const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
+  cancelAnim(); const tok = ++animToken;
+  const rec = new MediaRecorder(stage.captureStream(30), {mimeType:mime, videoBitsPerSecond:6e6}), chunks = [];
+  rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+  const stopped = new Promise(r => rec.onstop = r);
+  recording = true; busy = true; updateUI(); toast('錄影中，播完會自動存檔');
+  rec.start();
+  const ok = await runner(tok);
+  if (ok) await tween(1500, ()=>{}, tok);
+  rec.stop(); await stopped; recording = false; busy = false; caption = null; updateUI(); render();
+  if (ok) saveFile(`${name}.${ext}`, new Blob(chunks, {type:mime})); else toast('錄影中斷了');
+}
+
+/* ---------- 介面 ---------- */
+const RELOAD = ['count','density','fs','seg'];
+for (const el of $$('.seg[data-key]')){
+  const key = el.dataset.key;
+  el.querySelectorAll('button').forEach(b => b.onclick = () => {
+    if (S[key] === b.dataset.v || recording) return;
+    S[key] = b.dataset.v; savePrefs(); stroke = null;
+    if (RELOAD.includes(key) && S.view === 'lesson' && (LD || S.lesson >= 0)) loadLesson(S.lesson, false, S.lstep);
+    else if (key === 'pdfv'){ updateA4Preview(); updateDesignA4(); }
+    if (RELOAD.includes(key) && S.view === 'design') updateDesignA4();
+    updateUI(); render();
+  });
+}
+{ const el = $('#dColors'); for (const col of DCOLORS){ const b = document.createElement('button'); b.dataset.v = col; b.style.background = col; b.setAttribute('aria-label', '顏色 '+col);
+    b.onclick = () => { DS.color = col; saveDesign(); updateUI(); updateDesignA4(); }; el.appendChild(b); } }
+
+/* 教案目錄 */
+let thumbsReady;
+{ const lib = $('#library'), groups = [[1,'★ 入門・10–20 點',1,4],[2,'★★ 進階・20–40 點',5,8],[3,'★★★ 挑戰・40–80 點',9,12]];
+  for (const [lv,label,from,to] of groups){
+    const g = document.createElement('div'); g.className='lib-group';
+    g.innerHTML = `<h3>${label}・第 ${from}–${to} 課</h3><div class="cards"></div>`;
+    const cards = g.querySelector('.cards');
+    LESSONS.forEach((les, i) => { if (les.level !== lv) return;
+      const b = document.createElement('button'); b.className='card'; b.dataset.i = i;
+      b.innerHTML = `<span class="th"><img alt=""></span><span class="cn">第 ${i+1} 課・${les.n[1]} 點</span><b>${les.name}</b><span class="stars" aria-label="難度 ${les.level}">${stars(les.level)}</span>`;
+      b.onclick = () => { if (recording) return; if (S.view !== 'lesson') setView('lesson', true); loadLesson(i); window.scrollTo({top:0, behavior: reduced ? 'auto' : 'smooth'}); };
+      cards.appendChild(b); });
+    lib.appendChild(g);
+  }
+  thumbsReady = (async () => { await new Promise(r => setTimeout(r, 600));
+    for (let i=0;i<LESSONS.length;i++){ const ld = await buildLesson(LESSONS[i], {density:'std', fs:'big', count:'num', seg:'10'}); const img = $(`.card[data-i="${i}"] img`);
+      img.src = finalArt(ld, 300).toDataURL('image/png'); await new Promise(r => img.complete ? r() : (img.onload = r)); await new Promise(r => setTimeout(r, 20)); } })();
+}
+function renderStepList(){
+  const ol = $('#stepList'); ol.innerHTML = '';
+  lessonSteps.forEach((s, i) => { const li = document.createElement('li'), b = document.createElement('button');
+    b.innerHTML = `<span class="n">${i+1}</span><span>${s.title}</span>`; b.onclick = () => runLessonStep(i); li.appendChild(b); ol.appendChild(li); });
+}
+const nextAction = () => { if (S.lstep >= lessonSteps.length-1){ if (S.lesson < 0) setView('design'); else loadLesson((S.lesson+1)%LESSONS.length); } else runLessonStep(S.lstep+1); };
+$('#prevStep').onclick = () => runLessonStep(S.lstep-1);
+$('#nextStep').onclick = nextAction;
+$('#replayStep').onclick = () => runLessonStep(S.lstep);
+$('#autoPlay').onclick = async () => { if (!LD) return; cancelAnim(); const tok = ++animToken; busy = true; updateUI(); await playAll(tok, false); if (tok===animToken){ busy=false; updateUI(); render(); } };
+$('#speakBtn').onclick = () => { S.speak = !S.speak; savePrefs(); updateUI(); if (S.speak){ if (!window.speechSynthesis) toast('這個瀏覽器不支援語音'); else say('好，連到每一點都會唸出來'); } };
+const fileBase = () => S.lesson < 0 ? curLes().name : `第${S.lesson+1}課_${curLes().name}`;
+const pdfTag = () => ({cur:'', easy:'_大字簡易版', hard:'_挑戰版'})[S.pdfv];
+$('#a4One').onclick = () => buildPdf([{les:curLes(), no:S.lesson < 0 ? 0 : S.lesson+1}], false, `連點成畫學習單_${fileBase()}${pdfTag()}.pdf`);
+$('#a4All').onclick = $('#a4All2').onclick = () => buildPdf(LESSONS.map((les,i)=>({les, no:i+1})), true, `連點成畫_12課A4學習單${pdfTag()}.pdf`);
+$('#lRecord').onclick = () => { if (LD) recordWith(tok => playAll(tok, true), `連點成畫教學_${fileBase()}`); };
+$('#backDesign').onclick = () => setView('design');
+const playCustom = () => { const les = customLesson(); if (les.paths.reduce((s,p) => s + p.dots.length, 0) < 3){ toast('至少要放 3 個點，才能連成一個圖案'); return false; }
+  S.custom = les; S.view = 'lesson'; stroke = null; loadLesson(-1); return true; };
+$('#dPlay').onclick = () => { if (playCustom()) window.scrollTo({top:0, behavior: reduced ? 'auto' : 'smooth'}); };
+$('#dA4').onclick = () => { const les = customLesson(); if (!les.paths.length){ toast('還沒有任何點'); return; } buildPdf([{les, no:0}], false, `連點成畫學習單_${les.name}.pdf`); };
+$('#dRecord').onclick = async () => { const les = customLesson(); if (!les.paths.length){ toast('還沒有任何點'); return; }
+  S.custom = les; S.view = 'lesson'; stroke = null; await loadLesson(-1, false); recordWith(tok => playAll(tok, true), `連點成畫動畫_${les.name}`); };
+$('#undo').onclick = () => { if (!hist.length) return; redoStack.push(snap()); DS.paths = JSON.parse(hist.pop()); designChanged(); updateUI(); render(); };
+$('#redo').onclick = () => { if (!redoStack.length) return; hist.push(snap()); DS.paths = JSON.parse(redoStack.pop()); designChanged(); updateUI(); render(); };
+$('#clearAll').onclick = () => { if (!DS.paths.some(p => p.dots.length)) return; pushHist(); DS.paths = [{dots:[], closed:false}]; designChanged(); updateUI(); render(); toast('已全部清空，按「復原」可以找回'); };
+$('#sample').onclick = () => { pushHist(); const s = sampleDesign(); DS.paths = s.paths; DS.color = s.color; $('#dName').value = s.name; DS.name = s.name; designChanged(); updateUI(); render(); };
+$('#newStroke').onclick = () => { if (curPath().dots.length){ pushHist(); DS.paths.push({dots:[], closed:false}); designChanged(); } toast('好，下一個點會是新的一筆（★ 星星起點）'); updateUI(); render(); };
+$('#closeStroke').onclick = () => { const p = curPath(); pushHist(); p.closed = !p.closed; designChanged(); updateUI(); render(); };
+$('#imgFile').onchange = e => { const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return;
+  const url = URL.createObjectURL(f), im = new Image();
+  im.onload = () => { const k = Math.min(1, 900/Math.max(im.naturalWidth, im.naturalHeight)), cv = mk(Math.round(im.naturalWidth*k), Math.round(im.naturalHeight*k));
+    cv.getContext('2d').drawImage(im, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
+    const data = cv.toDataURL('image/jpeg', .85); DIMG = new Image(); DIMG.onload = () => { render(); updateUI(); }; DIMG.src = data;
+    try { localStorage.setItem(IKEY, data); } catch(err){}
+    toast('底圖放好了，沿著外框一下一下點出點'); };
+  im.onerror = () => { URL.revokeObjectURL(url); toast('這張圖打不開，換一張試試'); };
+  im.src = url; };
+$('#imgClear').onclick = () => { DIMG = null; try { localStorage.removeItem(IKEY); } catch(e){} updateUI(); render(); };
+$('#dName').value = DS.name || '小帆船';
+$('#dName').oninput = () => { DS.name = $('#dName').value; saveDesign(); updateDesignA4(); };
+
+$$('.modes button').forEach(b => b.onclick = () => setView(b.dataset.view));
+function setView(m, skipLoad){
+  if (recording) return;
+  if (m === 'design'){ if (S.view === 'design') return; cancelAnim(); loadSeq++; caption = null; S.view = 'design'; LD = null; V = V0(); updateUI(); render(); updateDesignA4(); return; }
+  if (S.view === 'lesson' && S.lesson >= 0) return;
+  cancelAnim(); S.view = 'lesson'; stroke = null;
+  if (!skipLoad) loadLesson(S.last); else { updateUI(); render(); }
+}
+
+/* 指標：自己設計時放點、手畫、刪除、拖曳 */
+stage.addEventListener('pointerdown', e => {
+  if (S.view !== 'design' || recording) return;
+  const pt = toArt(e); hoverPt = pt;
+  if (pt[0] < -10 || pt[1] < -10 || pt[0] > 1010 || pt[1] > 1010) return;
+  const near = nearestDot(pt);
+  if (S.tool === 'erase'){ if (near){ pushHist(); const p = DS.paths[near.pi]; p.dots.splice(near.k, 1); if (!p.dots.length && DS.paths.length > 1) DS.paths.splice(near.pi, 1); designChanged(); updateUI(); render(); } return; }
+  stage.setPointerCapture(e.pointerId);
+  if (S.tool === 'dot' && near){ pushHist(); drag = near; return; }
+  if (S.tool === 'draw'){ stroke = [pt]; render(); return; }
+  pushHist(); curPath().dots.push([Math.round(clamp(pt[0],0,1000)), Math.round(clamp(pt[1],0,1000))]); designChanged(); updateUI(); render();
+});
+stage.addEventListener('pointermove', e => {
+  if (S.view !== 'design') return;
+  const pt = toArt(e); hoverPt = pt;
+  if (drag){ DS.paths[drag.pi].dots[drag.k] = [Math.round(clamp(pt[0],0,1000)), Math.round(clamp(pt[1],0,1000))]; }
+  if (stroke){ const l = stroke[stroke.length-1]; if (dist(l, pt) > 4) stroke.push([clamp(pt[0],0,1000), clamp(pt[1],0,1000)]); }
+  requestRender();
+});
+const endPointer = () => {
+  if (drag){ drag = null; if (hist.length && hist[hist.length-1] === snap()) hist.pop(); designChanged(); updateUI(); render(); }
+  if (stroke){ const r = strokeToDots(stroke); stroke = null;
+    if (r){ pushHist(); if (curPath().dots.length) DS.paths.push({dots:[], closed:false}); const p = curPath(); p.dots = r.dots; p.closed = r.closed; designChanged(); toast(`變成 ${r.dots.length} 個點${r.closed ? '，頭尾接起來了' : ''}`); }
+    updateUI(); render(); }
+};
+stage.addEventListener('pointerup', endPointer);
+stage.addEventListener('pointercancel', endPointer);
+stage.addEventListener('pointerleave', () => { if (!drag && !stroke){ hoverPt = null; requestRender(); } });
+document.addEventListener('keydown', e => {
+  if (e.target && (e.target.tagName === 'INPUT')) return;
+  if (e.key === 'Escape' && wrapEl.classList.contains('is-fs')){ toggleFs(); return; }
+  if (S.view === 'design'){
+    if ((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='z'){ e.preventDefault(); (e.shiftKey ? $('#redo') : $('#undo')).click(); }
+    return;
+  }
+  if (isFs() && (e.key==='ArrowRight' || e.key===' ')){ e.preventDefault(); $('#nextStep').click(); return; }
+  if (isFs() && e.key==='ArrowLeft'){ $('#prevStep').click(); return; }
+  if (e.target === document.body){ if (e.key === 'ArrowRight') $('#nextStep').click(); if (e.key === 'ArrowLeft') $('#prevStep').click(); }
+});
+
+/* 全螢幕：投影、電視大螢幕觀看；iPhone 不支援時改用頁內全螢幕 */
+const wrapEl = $('#wrap');
+function isFs(){ return document.fullscreenElement === wrapEl || document.webkitFullscreenElement === wrapEl || wrapEl.classList.contains('is-fs'); }
+async function toggleFs(){
+  if (isFs()){
+    if (document.fullscreenElement || document.webkitFullscreenElement){ try { await (document.exitFullscreen ? document.exitFullscreen() : document.webkitExitFullscreen()); } catch(e){} }
+    wrapEl.classList.remove('is-fs'); document.documentElement.style.overflow = '';
+  } else {
+    const req = wrapEl.requestFullscreen || wrapEl.webkitRequestFullscreen;
+    try { if (!req) throw 0; await req.call(wrapEl); } catch(e){ wrapEl.classList.add('is-fs'); document.documentElement.style.overflow = 'hidden'; window.scrollTo(0,0); }
+  }
+  setTimeout(() => { resize(); updateUI(); }, 60);
+}
+$('#fsBtn').onclick = toggleFs;
+document.addEventListener('fullscreenchange', () => { resize(); updateUI(); });
+document.addEventListener('webkitfullscreenchange', () => { resize(); updateUI(); });
+$('#mPrev').onclick = () => $('#prevStep').click();
+$('#mNext').onclick = () => $('#nextStep').click();
+$('#mMid').onclick = () => $('#replayStep').click();
+/* 教案模式：在動畫上左右滑動換步驟 */
+{ let sx = null, sy = null;
+  stage.addEventListener('pointerdown', e => { if (S.view==='lesson'){ sx = e.clientX; sy = e.clientY; } });
+  stage.addEventListener('pointerup', e => { if (S.view!=='lesson' || sx===null || recording) return; const dx = e.clientX-sx, dy = e.clientY-sy; sx = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)*1.3) (dx < 0 ? $('#nextStep') : $('#prevStep')).click(); }); }
+$('#fsPrev').onclick = () => S.view==='lesson' && $('#prevStep').click();
+$('#fsNext').onclick = () => S.view==='lesson' && $('#nextStep').click();
+$('#fsReplay').onclick = () => S.view==='lesson' && $('#replayStep').click();
+function updateHint(){
+  let h = '';
+  if (hudMsg) h = hudMsg;
+  else if (recording) h = '錄影中，請稍候…';
+  else if (S.view === 'lesson'){ const s = lessonSteps[S.lstep]; h = s ? `步驟 ${S.lstep+1}：${s.title}${busy ? '…' : ''}` : ''; }
+  else if (S.tool === 'dot') h = '點一下放點，會自動編號；按住點可以拖曳移動。';
+  else if (S.tool === 'draw') h = '按住沿著外框畫一圈，放開就會自動排好點。';
+  else h = '點一下要刪掉的點。';
+  $('#hint').textContent = h;
+}
+function updateUI(){
+  const lesson = S.view === 'lesson', custom = lesson && S.lesson < 0, les = lesson ? curLes() : null;
+  $$('.modes button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.view === (lesson && !custom ? 'lesson' : 'design'))));
+  $('#lessonPanel').hidden = !lesson; $('#designPanel').hidden = lesson;
+  for (const el of $$('.seg[data-key]')) el.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === S[el.dataset.key])));
+  $('#speakBtn').setAttribute('aria-pressed', String(S.speak)); $('#speakBtn').textContent = S.speak ? '🔊 連到每一點時唸出來（開）' : '🔈 連到每一點時唸出來（關）';
+  if (lesson){
+    const s = lessonSteps[S.lstep], revealAt = lessonSteps.findIndex(x => x.type === 'reveal'), shown = revealAt >= 0 && S.lstep >= revealAt;
+    $('#lNum').textContent = custom ? '自己設計' : `第 ${S.lesson+1} 課・共 12 課`;
+    $('#lName').textContent = shown ? les.name : '猜猜我是誰？';
+    $('#lMeta').innerHTML = (les.level ? `<span class="chip"><span class="stars">${stars(les.level)}</span></span>` : '') + (LD ? `<span class="chip">${LD.n} 個點</span><span class="chip">${LD.paths.length} 筆</span>` : '') + `<span class="chip">${COUNT[S.count].name}</span>` + (shown ? `<span class="chip">${les.theme}</span>` : '');
+    $('#densNote').textContent = custom ? '（自己設計的點數不會變）' : `（疏 ${les.n[0]}・標準 ${les.n[1]}・密 ${les.n[2]} 點）`;
+    $$('.seg[data-key="density"] button').forEach(b => b.disabled = custom || recording);
+    if (s){ $('#scNum').textContent = `步驟 ${S.lstep+1} / ${lessonSteps.length}`; $('#scTitle').textContent = s.title; $('#scText').textContent = s.text; $('#scTip').textContent = s.tip || ''; $('#scTip').hidden = !s.tip; }
+    else { $('#scNum').textContent = ''; $('#scTitle').textContent = '準備中…'; $('#scText').textContent = ''; $('#scTip').hidden = true; }
+    $$('#stepList button').forEach((b,i) => { b.classList.toggle('done', i < S.lstep); if (i===S.lstep) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current'); b.disabled = recording; });
+    const last = S.lstep >= lessonSteps.length-1, nextLabel = last ? (custom ? '回去修改' : '下一課') : '下一步';
+    $('#prevStep').disabled = S.lstep === 0 || recording || !LD;
+    $('#nextStep').textContent = nextLabel;
+    for (const id of ['#nextStep','#replayStep','#autoPlay','#lRecord','#a4One']) $(id).disabled = recording || !LD;
+    $('#backDesign').hidden = !custom; $('#a4One').textContent = custom ? '下載我的 A4（PDF）' : '下載這課 A4（PDF）';
+    $$('.card').forEach(c => c.setAttribute('aria-current', String(!custom && +c.dataset.i === S.lesson)));
+    stage.style.cursor = 'default';
+    $('#tag').textContent = LD ? `${LD.n} 點・${COUNT[S.count].name}` : '';
+  } else {
+    const p = curPath();
+    $('#closeStroke').setAttribute('aria-pressed', String(!!p.closed)); $('#closeStroke').textContent = p.closed ? '這一筆連回起點（開）' : '這一筆連回起點（關）';
+    $('#dColors').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === DS.color)));
+    $('#undo').disabled = !hist.length; $('#redo').disabled = !redoStack.length; $('#imgClear').disabled = !DIMG;
+    for (const id of ['#dPlay','#dA4','#dRecord']) $(id).disabled = recording;
+    stage.style.cursor = S.tool === 'erase' ? 'pointer' : 'crosshair';
+    $('#tag').textContent = `${DS.paths.reduce((s,q) => s + q.dots.length, 0)} 個點`;
+  }
+  { const fs = isFs(), s = lessonSteps[S.lstep], last = S.lstep >= lessonSteps.length-1;
+    $('#fsBtn').textContent = fs ? '✕ 離開全螢幕' : '⛶ 全螢幕';
+    $('#fsTitle').textContent = lesson && s ? `${S.lstep+1}. ${s.title}` : '';
+    $('#fsText').textContent = lesson && s ? s.text : '';
+    $('#fsNav').hidden = !lesson;
+    const nl = last ? (custom ? '回去修改 ▶' : '下一課 ▶') : '下一步 ▶';
+    $('#fsNext').textContent = nl; $('#mNext').textContent = nl;
+    $('#fsPrev').disabled = $('#mPrev').disabled = S.lstep === 0 || recording;
+    $('#fsNext').disabled = $('#mNext').disabled = $('#fsReplay').disabled = recording;
+    document.body.classList.toggle('lesson-mode', lesson && !fs);
+    $('#mNum').textContent = s ? `步驟 ${S.lstep+1}/${lessonSteps.length}・點我重看` : '';
+    $('#mTitle').textContent = s ? s.title : '準備中…'; }
+  updateHint();
+}
+let toastTimer;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.hidden = false; t.style.opacity = '1'; clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.hidden = true, 300); }, 2800); }
+
+function resize(){
+  const r = wrapEl.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1);
+  const w = Math.max(10, Math.round(r.width*dpr)), h = Math.max(10, Math.round(r.height*dpr));
+  if (stage.width !== w || stage.height !== h){ stage.width = w; stage.height = h; }
+  render();
+}
+new ResizeObserver(resize).observe(wrapEl);
+const retheme = () => { readTokens(); render(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
+new MutationObserver(retheme).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+
+{ const b = $('#bunting'); for (let i=0;i<70;i++){ const sp = document.createElement('span'); sp.style.setProperty('--c', CUTE[i%CUTE.length]); b.appendChild(sp); } }
+readTokens();
+updateDesignStat();
+resize();
+loadLesson(0, false).then(() => setTimeout(() => runLessonStep(0), 300));
+window.__dots = {S, get V(){ return V; }, LESSONS, get LD(){ return LD; }, buildLesson, makeSheet, makeCover, finalArt, loadLesson, runLessonStep, drawBoard, setView, get DS(){ return DS; }};
+})();
+</script>
+
+</body>
+</html>
